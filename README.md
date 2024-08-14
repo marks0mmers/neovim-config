@@ -17,7 +17,8 @@ rm -rf ~/.local/state/nvim
 ```
 
 ### Install
-1. ```sh 
+1. Clone the repo by running the following
+```sh 
 git clone git@github.com:marks0mmers/neovim-config.git ~/.config/nvim
 ```
 2. Open nvim and ensure lazy deps install successfully
