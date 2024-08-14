@@ -1,14 +1,10 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
 return {
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'tpope/vim-sleuth',
   {
     'alexghergh/nvim-tmux-navigation',
     config = function()
       require('nvim-tmux-navigation').setup {
-        disable_when_zoomed = true, -- defaults to false
+        disable_when_zoomed = true,
         keybindings = {
           left = '<C-h>',
           down = '<C-j>',
@@ -23,11 +19,9 @@ return {
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
-    -- Optional dependency
     dependencies = { 'hrsh7th/nvim-cmp' },
     config = function()
       require('nvim-autopairs').setup {}
-      -- If you want to automatically add `(` after selecting a function or method
       local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
       local cmp = require 'cmp'
       cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
@@ -65,7 +59,6 @@ return {
       { '<leader>gg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
     },
   },
-  -- Material Theme
   {
     'marko-cerovac/material.nvim',
     priority = 1000,
@@ -76,7 +69,6 @@ return {
       vim.cmd.hi 'Comment gui=none'
     end,
   },
-  -- Highlight todo, notes, etc in comments
   {
     'folke/todo-comments.nvim',
     event = 'VimEnter',
@@ -85,7 +77,6 @@ return {
       signs = false,
     },
   },
-  -- Collection of various small independent plugins/modules
   {
     'echasnovski/mini.nvim',
     config = function()
@@ -118,9 +109,6 @@ return {
       statusline.section_location = function()
         return '%2l:%-2v'
       end
-
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
   {
@@ -141,29 +129,14 @@ return {
           end
         end,
       })
-      -- create autocmd to load main class configs on LspAttach.
-      -- This ensures that the LSP is fully attached.
-      -- See https://github.com/mfussenegger/nvim-jdtls#nvim-dap-configuration
-      --       vim.api.nvim_create_autocmd('LspAttach', {
-      --         pattern = '*.java',
-      --         callback = function(args)
-      --           local client = vim.lsp.get_client_by_id(args.data.client_id)
-      --           -- ensure that only the jdtls client is activated
-      --           if client ~= nil and client.name == 'jdtls' then
-      --             require('jdtls.dap').setup_dap_main_class_configs()
-      --           end
-      --         end,
-      --       })
     end,
   },
-  -- Useful plugin to show you pending keybinds.
   {
     'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    config = function() -- This is the function that runs, AFTER loading
+    event = 'VimEnter',
+    config = function()
       require('which-key').setup()
 
-      -- Document existing key chains
       require('which-key').add {
         { '<leader>l', group = '[L]SP' },
         { '<leader>d', group = '[D]ocument' },
@@ -175,11 +148,8 @@ return {
       }
     end,
   },
-  -- Add indentation guides even on blank lines
   {
     'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
     main = 'ibl',
     opts = {},
   },
