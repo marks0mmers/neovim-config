@@ -21,6 +21,19 @@ return {
     end,
   },
   {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    -- Optional dependency
+    dependencies = { 'hrsh7th/nvim-cmp' },
+    config = function()
+      require('nvim-autopairs').setup {}
+      -- If you want to automatically add `(` after selecting a function or method
+      local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+      local cmp = require 'cmp'
+      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+    end,
+  },
+  {
     'olexsmir/gopher.nvim',
     ft = 'go',
     build = function()
@@ -142,5 +155,32 @@ return {
       --         end,
       --       })
     end,
+  },
+  -- Useful plugin to show you pending keybinds.
+  {
+    'folke/which-key.nvim',
+    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
+    config = function() -- This is the function that runs, AFTER loading
+      require('which-key').setup()
+
+      -- Document existing key chains
+      require('which-key').add {
+        { '<leader>l', group = '[L]SP' },
+        { '<leader>d', group = '[D]ocument' },
+        { '<leader>r', group = '[R]ename' },
+        { '<leader>f', group = '[F]ind' },
+        { '<leader>t', group = '[T]oggle' },
+        { '<leader>g', group = '[G]it' },
+        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+      }
+    end,
+  },
+  -- Add indentation guides even on blank lines
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    -- Enable `lukas-reineke/indent-blankline.nvim`
+    -- See `:help ibl`
+    main = 'ibl',
+    opts = {},
   },
 }

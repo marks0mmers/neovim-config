@@ -130,15 +130,12 @@ vim.opt.rtp:prepend(lazypath)
 --
 require('lazy').setup({
   -- { import = 'plugins.debug' },
-  -- { import = 'plugins.indent_line' },
   -- { import = 'plugins.lint' },
   -- { import = 'plugins.health' },
   { import = 'plugins.neo_tree' },
   { import = 'plugins.gitsigns' },
-  { import = 'plugins.autopairs' },
   { import = 'plugins.telescope' },
   { import = 'plugins.treesitter' },
-  { import = 'plugins.which_key' },
   { import = 'plugins.lsp' },
   { import = 'plugins.conform' },
   { import = 'plugins.cmp' },
