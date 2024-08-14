@@ -26,7 +26,7 @@ return {
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        local gitsigns = require 'gitsigns'
+        local gitsigns = require('gitsigns')
 
         local function map(mode, l, r, opts)
           opts = opts or {}
@@ -37,25 +37,25 @@ return {
         -- Navigation
         map('n', ']c', function()
           if vim.wo.diff then
-            vim.cmd.normal { ']c', bang = true }
+            vim.cmd.normal({ ']c', bang = true })
           else
-            gitsigns.nav_hunk 'next'
+            gitsigns.nav_hunk('next')
           end
         end, { desc = 'Jump to next git [c]hange' })
 
         map('n', '[c', function()
           if vim.wo.diff then
-            vim.cmd.normal { '[c', bang = true }
+            vim.cmd.normal({ '[c', bang = true })
           else
-            gitsigns.nav_hunk 'prev'
+            gitsigns.nav_hunk('prev')
           end
         end, { desc = 'Jump to previous git [c]hange' })
 
         map('v', '<leader>hs', function()
-          gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
+          gitsigns.stage_hunk({ vim.fn.line('.'), vim.fn.line('v') })
         end, { desc = 'stage git hunk' })
         map('v', '<leader>hr', function()
-          gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
+          gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
         end, { desc = 'reset git hunk' })
         map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'git [s]tage hunk' })
         map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk' })
@@ -66,7 +66,7 @@ return {
         map('n', '<leader>hb', gitsigns.blame_line, { desc = 'git [b]lame line' })
         map('n', '<leader>hd', gitsigns.diffthis, { desc = 'git [d]iff against index' })
         map('n', '<leader>hD', function()
-          gitsigns.diffthis '@'
+          gitsigns.diffthis('@')
         end, { desc = 'git [D]iff against last commit' })
         map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
         map('n', '<leader>tD', gitsigns.toggle_deleted, { desc = '[T]oggle git show [D]eleted' })
@@ -75,8 +75,11 @@ return {
   },
   {
     'tpope/vim-fugitive',
-    config = function()
-      vim.keymap.set('n', '<leader>gs', vim.cmd.Git, { desc = '[S]tatus' })
-    end,
+    keys = {
+      { '<leader>gs', '<cmd>G<CR>', desc = '[S]tatus' },
+      { '<leader>gc', '<cmd>G commit<CR>', desc = '[C]ommit' },
+      { '<leader>gp', '<cmd>G pull<CR>', desc = '[P]ull' },
+      { '<leader>gP', '<cmd>G push<CR>', desc = '[P]ush' },
+    },
   },
 }
