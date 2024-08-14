@@ -3,7 +3,7 @@ return {
   {
     'alexghergh/nvim-tmux-navigation',
     config = function()
-      require('nvim-tmux-navigation').setup {
+      require('nvim-tmux-navigation').setup({
         disable_when_zoomed = true,
         keybindings = {
           left = '<C-h>',
@@ -13,7 +13,7 @@ return {
           last_active = '<C-\\>',
           next = '<C-Space>',
         },
-      }
+      })
     end,
   },
   {
@@ -21,9 +21,9 @@ return {
     event = 'InsertEnter',
     dependencies = { 'hrsh7th/nvim-cmp' },
     config = function()
-      require('nvim-autopairs').setup {}
-      local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-      local cmp = require 'cmp'
+      require('nvim-autopairs').setup({})
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      local cmp = require('cmp')
       cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
   },
@@ -32,7 +32,7 @@ return {
     ft = 'go',
     build = function()
       if not require('lazy.core.config').spec.plugins['mason.nvim'] then
-        vim.print 'Installing go dependencies...'
+        vim.print('Installing go dependencies...')
         vim.cmd.GoInstallDeps()
       end
     end,
@@ -48,9 +48,9 @@ return {
     priority = 1000,
     init = function()
       vim.g.material_style = 'darker'
-      vim.cmd.colorscheme 'material'
+      vim.cmd.colorscheme('material')
 
-      vim.cmd.hi 'Comment gui=none'
+      vim.cmd.hi('Comment gui=none')
     end,
   },
   {
@@ -70,7 +70,7 @@ return {
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
       --  - ci'  - [C]hange [I]nside [']quote
-      require('mini.ai').setup { n_lines = 500 }
+      require('mini.ai').setup({ n_lines = 500 })
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
@@ -82,9 +82,9 @@ return {
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
       --  and try some other statusline plugin
-      local statusline = require 'mini.statusline'
+      local statusline = require('mini.statusline')
       -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      statusline.setup({ use_icons = vim.g.have_nerd_font })
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
@@ -109,7 +109,7 @@ return {
           if opts.root_dir and opts.root_dir ~= '' then
             require('jdtls').start_or_attach(opts)
           else
-            vim.lsp.log.error 'jdtls: root_dir not found. Please specify a root marker'
+            vim.lsp.log.error('jdtls: root_dir not found. Please specify a root marker')
           end
         end,
       })
@@ -121,15 +121,15 @@ return {
     config = function()
       require('which-key').setup()
 
-      require('which-key').add {
+      require('which-key').add({
         { '<leader>l', group = '[L]SP' },
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>f', group = '[F]ind' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>g', group = '[G]it' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-      }
+        { '<leader>gh', group = 'Git [H]unk', mode = { 'n', 'v' } },
+      })
     end,
   },
   {

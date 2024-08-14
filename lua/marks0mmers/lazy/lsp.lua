@@ -37,9 +37,9 @@ return {
 
           map('<leader>lD', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
 
-          map('<leader>ls', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          map('<leader>ls', require('telescope.builtin').lsp_document_symbols, 'Document [S]ymbols')
 
-          map('<leader>lS', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[D]ocument Workspace [S]ymbols')
+          map('<leader>lS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Document Workspace [S]ymbols')
 
           map('<leader>lr', vim.lsp.buf.rename, '[R]ename Symbol')
 
