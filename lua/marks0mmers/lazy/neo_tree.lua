@@ -7,16 +7,61 @@ return {
     'MunifTanjim/nui.nvim',
   },
   cmd = 'Neotree',
-  keys = {
-    { '\\', '<cmd>Neotree reveal<CR>', desc = 'NeoTree reveal' },
-  },
+  init = function()
+    -- the remote file handling part
+    vim.api.nvim_create_autocmd('BufEnter', {
+      group = vim.api.nvim_create_augroup('RemoteFileInit', { clear = true }),
+      callback = function()
+        local f = vim.fn.expand('%:p')
+        for _, v in ipairs({ 'dav', 'fetch', 'ftp', 'http', 'rcp', 'rsync', 'scp', 'sftp' }) do
+          local p = v .. '://'
+          if f:sub(1, #p) == p then
+            vim.cmd([[
+              unlet g:loaded_netrw
+              unlet g:loaded_netrwPlugin
+              runtime! plugin/netrwPlugin.vim
+              silent Explore %
+            ]])
+            break
+          end
+        end
+        vim.api.nvim_clear_autocmds({ group = 'RemoteFileInit' })
+      end,
+    })
+    vim.api.nvim_create_autocmd('BufEnter', {
+      group = vim.api.nvim_create_augroup('NeoTreeInit', { clear = true }),
+      callback = function()
+        local f = vim.fn.expand('%:p')
+        if vim.fn.isdirectory(f) ~= 0 then
+          vim.cmd('Neotree current dir=' .. f)
+          vim.api.nvim_clear_autocmds({ group = 'NeoTreeInit' })
+        end
+      end,
+    })
+    -- keymaps
+  end,
   opts = {
     filesystem = {
-      window = {
-        mappings = {
-          ['\\'] = 'close_window',
-        },
+      hijack_netrw_behavior = 'open_current',
+    },
+    window = {
+      mappings = {
+        ['<Space>'] = false,
       },
+    },
+  },
+  keys = {
+    { '<leader>e', '<cmd>Neotree toggle<CR>', desc = 'NeoTree toggle' },
+    {
+      '<leader>o',
+      function()
+        if vim.bo.filetype == 'neo-tree' then
+          vim.cmd.wincmd('p')
+        else
+          vim.cmd.Neotree('focus')
+        end
+      end,
+      desc = 'NeoTree toggle focus',
     },
   },
 }

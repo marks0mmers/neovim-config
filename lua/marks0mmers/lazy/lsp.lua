@@ -30,19 +30,23 @@ return {
 
           map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
-          map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+          map('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
+          map('gR', require('telescope.builtin').lsp_references, 'Search [R]eferences')
 
           map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
-          map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+          map('<leader>lD', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
 
-          map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+          map('<leader>ls', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
 
-          map('<leader>ls', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[Document [S]ymbols')
+          map('<leader>lS', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[D]ocument Workspace [S]ymbols')
 
           map('<leader>lr', vim.lsp.buf.rename, '[R]ename Symbol')
 
           map('<leader>la', vim.lsp.buf.code_action, 'Code [A]ctions')
+
+          map('<leader>lq', vim.diagnostic.setloclist, 'Diagnostic [Q]uickfix list')
+          map('<Leader>ld', vim.diagnostic.open_float, 'Hover diagnostics')
 
           map('<leader>li', '<cmd>LspInfo<CR>', '[I]nfo')
 
@@ -67,14 +71,14 @@ return {
               group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
               callback = function(event2)
                 vim.lsp.buf.clear_references()
-                vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
+                vim.api.nvim_clear_autocmds({ group = 'kickstart-lsp-highlight', buffer = event2.buf })
               end,
             })
           end
 
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map('<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
             end, '[T]oggle Inlay [H]ints')
           end
         end,
@@ -84,7 +88,7 @@ return {
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       local java_project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-      local java_workspace_dir = vim.fn.stdpath 'data' .. '/site/java/workspace-root/' .. java_project_name
+      local java_workspace_dir = vim.fn.stdpath('data') .. '/site/java/workspace-root/' .. java_project_name
       vim.fn.mkdir(java_workspace_dir, 'p')
 
       local servers = {
@@ -100,7 +104,7 @@ return {
             '-Declipse.product=org.eclipse.jdt.ls.core.product',
             '-Dlog.protocol=true',
             '-Dlog.level=ALL',
-            '-javaagent:' .. vim.fn.expand '$MASON/share/jdtls/lombok.jar',
+            '-javaagent:' .. vim.fn.expand('$MASON/share/jdtls/lombok.jar'),
             '-Xms1g',
             '--add-modules=ALL-SYSTEM',
             '--add-opens',
@@ -108,9 +112,9 @@ return {
             '--add-opens',
             'java.base/java.lang=ALL-UNNAMED',
             '-jar',
-            vim.fn.expand '$MASON/share/jdtls/plugins/org.eclipse.equinox.launcher.jar',
+            vim.fn.expand('$MASON/share/jdtls/plugins/org.eclipse.equinox.launcher.jar'),
             '-configuration',
-            vim.fn.expand '$MASON/share/jdtls/config',
+            vim.fn.expand('$MASON/share/jdtls/config'),
             '-data',
             java_workspace_dir,
           },
@@ -175,9 +179,9 @@ return {
         'java-debug-adapter',
         'java-test',
       })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
 
-      require('mason-lspconfig').setup {
+      require('mason-lspconfig').setup({
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
@@ -185,7 +189,7 @@ return {
             require('lspconfig')[server_name].setup(server)
           end,
         },
-      }
+      })
     end,
   },
 }
