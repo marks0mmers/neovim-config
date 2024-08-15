@@ -6,7 +6,7 @@ return {
     {
       '<leader>lf',
       function()
-        require('conform').format { async = true, lsp_fallback = true }
+        require('conform').format({ async = true, lsp_fallback = true })
       end,
       mode = '',
       desc = '[F]ormat buffer',
@@ -26,6 +26,7 @@ return {
       javascript = { 'prettierd', 'prettier', stop_after_first = true },
       javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
       go = { 'gofumpt', 'goimports' },
+      rust = { 'rustfmt' },
     },
   },
 }
