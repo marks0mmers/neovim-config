@@ -77,6 +77,7 @@ return {
     'tpope/vim-fugitive',
     keys = {
       { '<leader>gs', '<cmd>G<CR>', desc = '[S]tatus' },
+      { '<leader>ga', '<cmd>G add .<CR>', desc = '[A]dd All' },
       { '<leader>gc', '<cmd>G commit<CR>', desc = '[C]ommit' },
       { '<leader>gp', '<cmd>G pull<CR>', desc = '[P]ull' },
       { '<leader>gP', '<cmd>G push<CR>', desc = '[P]ush' },

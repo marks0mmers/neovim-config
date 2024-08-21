@@ -96,6 +96,7 @@ return {
         pyright = {},
         rust_analyzer = {},
         tsserver = {},
+        tailwindcss = {},
         ols = {},
         jdtls = {
           cmd = {

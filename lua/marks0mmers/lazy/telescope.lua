@@ -34,6 +34,7 @@ return {
     vim.keymap.set('n', '<leader>fw', builtin.live_grep, { desc = '[F]ind Word' })
     vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
     vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = '[F]ind [R]esume' })
+    vim.keymap.set('n', '<leader>gf', builtin.git_status, { desc = '[F]iles' })
     vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
     vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 

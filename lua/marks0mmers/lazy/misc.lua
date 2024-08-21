@@ -1,5 +1,6 @@
 return {
   'tpope/vim-sleuth',
+  'brenoprata10/nvim-highlight-colors',
   {
     'alexghergh/nvim-tmux-navigation',
     config = function()
