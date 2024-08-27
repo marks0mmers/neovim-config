@@ -78,9 +78,11 @@ return {
     keys = {
       { '<leader>gs', '<cmd>G<CR>', desc = '[S]tatus' },
       { '<leader>ga', '<cmd>G add .<CR>', desc = '[A]dd All' },
-      { '<leader>gc', '<cmd>G commit<CR>', desc = '[C]ommit' },
       { '<leader>gp', '<cmd>G pull<CR>', desc = '[P]ull' },
       { '<leader>gP', '<cmd>G push<CR>', desc = '[P]ush' },
+      { '<leader>gds', '<cmd>Gvdiffsplit!<CR>', desc = '[D]iff [S]plit' },
+      { '<leader>gdl', '<cmd>diffget //2<CR>', desc = '[D]iff [L]eft' },
+      { '<leader>gdr', '<cmd>diffget //2<CR>', desc = '[D]iff [R]ight' },
     },
   },
 }

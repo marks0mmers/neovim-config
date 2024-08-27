@@ -7,12 +7,12 @@ return {
       require('nvim-tmux-navigation').setup({
         disable_when_zoomed = true,
         keybindings = {
-          left = '<C-h>',
-          down = '<C-j>',
-          up = '<C-k>',
-          right = '<C-l>',
-          last_active = '<C-\\>',
-          next = '<C-Space>',
+          left = '<C-w><C-h>',
+          down = '<C-w><C-j>',
+          up = '<C-w><C-k>',
+          right = '<C-w><C-l>',
+          last_active = '<C-w><C-\\>',
+          next = '<C-w><C-Space>',
         },
       })
     end,
