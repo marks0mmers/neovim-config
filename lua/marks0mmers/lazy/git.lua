@@ -1,21 +1,5 @@
 return {
   {
-    'kdheepak/lazygit.nvim',
-    cmd = {
-      'LazyGit',
-      'LazyGitConfig',
-      'LazyGitCurrentFile',
-      'LazyGitFilter',
-      'LazyGitFilterCurrentFile',
-    },
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
-    keys = {
-      { '<leader>gg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
-    },
-  },
-  {
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {
@@ -77,9 +61,7 @@ return {
     'tpope/vim-fugitive',
     keys = {
       { '<leader>gs', '<cmd>G<CR>', desc = '[S]tatus' },
-      { '<leader>ga', '<cmd>G add .<CR>', desc = '[A]dd All' },
       { '<leader>gp', '<cmd>G pull<CR>', desc = '[P]ull' },
-      { '<leader>gP', '<cmd>G push<CR>', desc = '[P]ush' },
       { '<leader>gds', '<cmd>Gvdiffsplit!<CR>', desc = '[D]iff [S]plit' },
       { '<leader>gdl', '<cmd>diffget //2<CR>', desc = '[D]iff [L]eft' },
       { '<leader>gdr', '<cmd>diffget //2<CR>', desc = '[D]iff [R]ight' },
