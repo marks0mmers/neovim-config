@@ -46,13 +46,12 @@ return {
   },
   {
     'marko-cerovac/material.nvim',
+  },
+  {
+    'folke/tokyonight.nvim',
+    lazy = false,
     priority = 1000,
-    init = function()
-      vim.g.material_style = 'darker'
-      vim.cmd.colorscheme('material')
-
-      vim.cmd.hi('Comment gui=none')
-    end,
+    opts = {},
   },
   {
     'folke/todo-comments.nvim',
@@ -119,11 +118,6 @@ return {
   {
     'lukas-reineke/indent-blankline.nvim',
     main = 'ibl',
-    opts = {},
-  },
-  {
-    'm4xshen/hardtime.nvim',
-    dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
     opts = {},
   },
 }
