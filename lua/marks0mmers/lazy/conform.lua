@@ -30,6 +30,7 @@ return {
         javascriptreact = js_formatters,
         typescript = js_formatters,
         typescriptreact = js_formatters,
+        json = js_formatters,
         scss = js_formatters,
         go = { 'gofumpt', 'goimports', 'golines' },
         rust = { 'rustfmt' },

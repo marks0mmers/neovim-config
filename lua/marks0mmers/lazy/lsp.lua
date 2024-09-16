@@ -108,6 +108,7 @@ return {
         tsserver = {},
         tailwindcss = {},
         ols = {},
+        jsonls = {},
         jdtls = {
           cmd = {
             'java',
@@ -187,7 +188,6 @@ return {
         'eslint',
         'iferr',
         'impl',
-        'jdtls',
         'java-debug-adapter',
         'java-test',
       })
