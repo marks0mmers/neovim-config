@@ -32,6 +32,13 @@ vim.opt.scrolloff = 10
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
+vim.g.netrw_liststyle = 3
+
 -- vim.g.material_style = 'darker'
 -- vim.cmd.colorscheme('material')
 vim.cmd.colorscheme('tokyonight-night')
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'java',
+  command = 'setlocal shiftwidth=4 tabstop=4',
+})

@@ -109,6 +109,7 @@ return {
         tailwindcss = {},
         ols = {},
         jsonls = {},
+        ['kotlin-language-server'] = {},
         jdtls = {
           cmd = {
             'java',
@@ -167,7 +168,7 @@ return {
           },
           filetypes = { 'java' },
         },
-
+        lemminx = {},
         lua_ls = {
           settings = {
             Lua = {
