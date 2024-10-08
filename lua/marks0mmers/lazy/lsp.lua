@@ -169,6 +169,7 @@ return {
           filetypes = { 'java' },
         },
         lemminx = {},
+        ocamllsp = {},
         lua_ls = {
           settings = {
             Lua = {
