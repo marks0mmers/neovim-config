@@ -155,10 +155,13 @@ return {
                   'org.mockito.Mockito.*',
                 },
               },
+              format = {
+                tabSize = 4,
+              },
               sources = {
                 organizeImports = {
-                  starThreshold = 9999,
-                  staticStarThreshold = 9999,
+                  starThreshold = 5,
+                  staticStarThreshold = 2,
                 },
               },
             },
