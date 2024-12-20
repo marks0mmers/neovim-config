@@ -53,7 +53,7 @@ return {
 
           map('<leader>lr', vim.lsp.buf.rename, '[R]ename Symbol')
 
-          map('<leader>la', fzf.lsp_code_actions, 'Code [A]ctions')
+          map('<leader>la', vim.lsp.buf.code_action, 'Code [A]ctions')
 
           map('<leader>lq', vim.diagnostic.setloclist, 'Diagnostic [Q]uickfix list')
           map('<Leader>ld', vim.diagnostic.open_float, 'Hover diagnostics')

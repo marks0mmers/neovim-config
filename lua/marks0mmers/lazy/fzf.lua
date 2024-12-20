@@ -7,6 +7,7 @@ return {
       -- calling `setup` is optional for customization
       local fzf = require('fzf-lua')
       fzf.setup({})
+      fzf.register_ui_select()
       vim.keymap.set('n', '<leader>ff', fzf.files, { desc = '[F]ind [F]iles' })
       vim.keymap.set('n', '<leader>fr', fzf.resume, { desc = '[F]ind [R]esume' })
       vim.keymap.set('n', '<leader>fh', fzf.help_tags, { desc = '[F]ind [H]elp' })
