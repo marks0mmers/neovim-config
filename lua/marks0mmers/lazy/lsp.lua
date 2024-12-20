@@ -38,18 +38,18 @@ return {
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
-          map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+          local fzf = require('fzf-lua')
+
+          map('gd', fzf.lsp_definitions, '[G]oto [D]efinition')
 
           map('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
-          map('gR', require('telescope.builtin').lsp_references, 'Search [R]eferences')
+          map('gR', fzf.lsp_references, 'Search [R]eferences')
 
-          map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+          map('gI', fzf.lsp_implementations, '[G]oto [I]mplementation')
 
-          map('<leader>lD', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+          map('<leader>lD', fzf.lsp_typedefs, 'Type [D]efinition')
 
-          map('<leader>ls', require('telescope.builtin').lsp_document_symbols, 'Document [S]ymbols')
-
-          map('<leader>lS', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Document Workspace [S]ymbols')
+          map('<leader>ls', fzf.lsp_document_symbols, 'Document [S]ymbols')
 
           map('<leader>lr', vim.lsp.buf.rename, '[R]ename Symbol')
 
