@@ -40,14 +40,22 @@ return {
 
           local fzf = require('fzf-lua')
 
-          map('gd', fzf.lsp_definitions, '[G]oto [D]efinition')
+          map('gd', function()
+            fzf.lsp_definitions({ jump_to_single_result = true, ignore_current_line = true })
+          end, '[G]oto [D]efinition')
 
-          map('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
-          map('gR', fzf.lsp_references, 'Search [R]eferences')
+          map('gr', function()
+            fzf.lsp_references({ jump_to_single_result = true, ignore_current_line = true })
+          end, '[G]oto [R]eferences')
+          map('gR', vim.lsp.buf.references, '[N]ative [R]eferences')
 
-          map('gI', fzf.lsp_implementations, '[G]oto [I]mplementation')
+          map('gI', function()
+            fzf.lsp_implementations({ jump_to_single_result = true, ignore_current_line = true })
+          end, '[G]oto [I]mplementation')
 
-          map('<leader>lD', fzf.lsp_typedefs, 'Type [D]efinition')
+          map('<leader>lD', function()
+            fzf.lsp_typedefs({ jump_to_single_result = true, ignore_current_line = true })
+          end, 'Type [D]efinition')
 
           map('<leader>ls', fzf.lsp_document_symbols, 'Document [S]ymbols')
 
