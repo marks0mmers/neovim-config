@@ -77,26 +77,6 @@ return {
     end,
   },
   {
-    'mfussenegger/nvim-jdtls',
-    ft = { 'java' },
-    dependencies = {
-      'williamboman/mason-lspconfig.nvim',
-    },
-    config = function(_, opts)
-      -- setup autocmd on filetype detect java
-      vim.api.nvim_create_autocmd('Filetype', {
-        pattern = 'java', -- autocmd to start jdtls
-        callback = function()
-          if opts.root_dir and opts.root_dir ~= '' then
-            require('jdtls').start_or_attach(opts)
-          else
-            vim.lsp.log.error('jdtls: root_dir not found. Please specify a root marker')
-          end
-        end,
-      })
-    end,
-  },
-  {
     'folke/which-key.nvim',
     event = 'VimEnter',
     config = function()
