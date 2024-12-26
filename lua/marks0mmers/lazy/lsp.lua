@@ -10,15 +10,11 @@ return {
   },
   {
     'windwp/nvim-ts-autotag',
-    config = function()
-      require('nvim-ts-autotag').setup({
-        opts = {
-          enable_close = true,
-          enable_rename = true,
-          enable_close_on_slash = false,
-        },
-      })
-    end,
+    opts = {
+      enable_close = true,
+      enable_rename = true,
+      enable_close_on_slash = false,
+    },
   },
   { 'Bilal2453/luvit-meta', lazy = true },
   {
