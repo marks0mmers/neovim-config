@@ -10,19 +10,20 @@ return {
       'nvim-treesitter/nvim-treesitter',
       'nvim-neotest/neotest-go',
     },
-    config = function()
+    opts = function()
       local neotest = require('neotest')
-      neotest.setup({
+
+      vim.keymap.set('n', '<leader>tc', function()
+        neotest.run.run()
+      end)
+
+      return {
         adapters = {
           require('neotest-go'),
           require('neotest-vitest'),
           require('neotest-plenary'),
         },
-      })
-
-      vim.keymap.set('n', '<leader>tc', function()
-        neotest.run.run()
-      end)
+      }
     end,
   },
 }

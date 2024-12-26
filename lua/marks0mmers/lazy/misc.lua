@@ -3,26 +3,23 @@ return {
   'brenoprata10/nvim-highlight-colors',
   {
     'alexghergh/nvim-tmux-navigation',
-    config = function()
-      require('nvim-tmux-navigation').setup({
-        disable_when_zoomed = true,
-        keybindings = {
-          left = '<C-w><C-h>',
-          down = '<C-w><C-j>',
-          up = '<C-w><C-k>',
-          right = '<C-w><C-l>',
-          last_active = '<C-w><C-\\>',
-          next = '<C-w><C-Space>',
-        },
-      })
-    end,
+    opts = {
+      disable_when_zoomed = true,
+      keybindings = {
+        left = '<C-w><C-h>',
+        down = '<C-w><C-j>',
+        up = '<C-w><C-k>',
+        right = '<C-w><C-l>',
+        last_active = '<C-w><C-\\>',
+        next = '<C-w><C-Space>',
+      },
+    },
   },
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
     dependencies = { 'hrsh7th/nvim-cmp' },
-    config = function()
-      require('nvim-autopairs').setup({})
+    opts = function()
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       local cmp = require('cmp')
       cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
@@ -79,9 +76,7 @@ return {
   {
     'folke/which-key.nvim',
     event = 'VimEnter',
-    config = function()
-      require('which-key').setup()
-
+    opts = function()
       require('which-key').add({
         { '<leader>l', group = '[L]SP' },
         { '<leader>d', group = '[D]ocument' },
@@ -103,17 +98,12 @@ return {
     dependencies = {
       'MunifTanjim/nui.nvim',
     },
-    config = function()
-      require('package-info').setup()
-    end,
+    opts = {},
   },
   {
     'Wansmer/treesj',
     keys = { '<space>m', '<space>j', '<space>s' },
     dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
-    config = function()
-      require('treesj').setup({--[[ your config ]]
-      })
-    end,
+    opts = {},
   },
 }

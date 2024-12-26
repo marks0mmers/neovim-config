@@ -16,13 +16,13 @@ return {
     'hrsh7th/cmp-path',
     'onsails/lspkind.nvim',
   },
-  config = function()
+  opts = function()
     local cmp = require('cmp')
     local luasnip = require('luasnip')
     local lspkind = require('lspkind')
     luasnip.config.setup({})
 
-    cmp.setup({
+    return {
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
@@ -71,6 +71,6 @@ return {
         { name = 'luasnip' },
         { name = 'path' },
       },
-    })
+    }
   end,
 }
