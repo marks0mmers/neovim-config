@@ -1,12 +1,19 @@
 return {
   {
     'ibhagwan/fzf-lua',
-    -- optional for icon support
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      -- calling `setup` is optional for customization
       local fzf = require('fzf-lua')
-      fzf.setup({})
+      fzf.setup({
+        grep = {
+          actions = {
+            ['ctrl-q'] = {
+              fn = fzf.actions.file_edit_or_qf,
+              prefix = 'select-all+',
+            },
+          },
+        },
+      })
       fzf.register_ui_select()
       vim.keymap.set('n', '<leader>ff', fzf.files, { desc = '[F]ind [F]iles' })
       vim.keymap.set('n', '<leader>fr', fzf.resume, { desc = '[F]ind [R]esume' })
