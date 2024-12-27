@@ -35,4 +35,15 @@ return {
       indent = { enable = true, disable = { 'ruby' } },
     },
   },
+  {
+    'windwp/nvim-ts-autotag',
+    opts = {
+      -- this shit is backwards lol
+      opts = {
+        enable_close = true,
+        enable_rename = true,
+        enable_close_on_slash = false,
+      },
+    },
+  },
 }
