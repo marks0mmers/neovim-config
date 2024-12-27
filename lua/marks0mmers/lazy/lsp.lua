@@ -3,7 +3,7 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      { 'williamboman/mason.nvim', config = true },
+      { 'williamboman/mason.nvim', opts = {} },
       'williamboman/mason-lspconfig.nvim',
       { 'j-hui/fidget.nvim', opts = {} },
       'hrsh7th/cmp-nvim-lsp',
@@ -56,9 +56,7 @@ return {
           end
         end,
       })
-    end,
 
-    config = function()
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 

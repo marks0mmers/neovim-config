@@ -42,9 +42,6 @@ return {
     opts = {},
   },
   {
-    'marko-cerovac/material.nvim',
-  },
-  {
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
