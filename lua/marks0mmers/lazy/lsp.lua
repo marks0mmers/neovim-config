@@ -86,8 +86,22 @@ return {
 
       require('mason').setup()
       require('java').setup()
-      require('lspconfig').jdtls.setup({})
-      require('lspconfig').gleam.setup({})
+      local lspconfig = require('lspconfig')
+      lspconfig.jdtls.setup({})
+      lspconfig.gleam.setup({})
+      lspconfig.zls.setup({
+        cmd = { 'zls' },
+        root_dir = lspconfig.util.root_pattern('.git', 'build.zig', 'zls.json'),
+        settings = {
+          zls = {
+            enable_enlay_hints = true,
+            enable_snippets = true,
+            warn_style = true,
+          },
+        },
+      })
+      vim.g.zig_fmt_parse_errors = 0
+      vim.g.zig_fmt_autosave = 0
       require('mason-lspconfig').setup({
         automatic_installation = true,
         ensure_installed = vim.tbl_keys(servers),
