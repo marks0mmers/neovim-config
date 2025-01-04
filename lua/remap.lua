@@ -10,6 +10,6 @@ vim.keymap.set('v', 'J', "<cmd>m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', "<cmd>m '<-2<CR>gv=gv")
 
 vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
-vim.keymap.set('n', '<leader>nh', function()
+vim.keymap.set('n', '<leader>tn', function()
   require('snacks').notifier.show_history()
-end, { desc = 'Show Notification History' })
+end, { desc = '[T]oggle [N]otification History' })

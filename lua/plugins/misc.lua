@@ -77,9 +77,11 @@ return {
         { '<leader>d', group = '[D]ocument' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>f', group = '[F]ind' },
-        { '<leader>t', group = '[T]oggle' },
+        { '<leader>t', group = '[T]est/Toggle' },
         { '<leader>g', group = '[G]it' },
+        { '<leader>s', group = '[S]plit' },
         { '<leader>gh', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>gd', group = 'Git [D]iff' },
       })
     end,
   },
@@ -97,14 +99,18 @@ return {
   },
   {
     'Wansmer/treesj',
-    keys = { '<space>m', '<space>j', '<space>s' },
+    keys = {
+      { '<leader>sj', '<cmd>TSJJoin<CR>', desc = '[J]oin' },
+      { '<leader>ss', '<cmd>TSJSplit<CR>', desc = '[S]plit' },
+      { '<leader>st', '<cmd>TSJToggle<CR>', desc = '[T]oggle' },
+    },
     dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
-    opts = {},
+    opts = { use_default_keymaps = false },
   },
   {
     'mbbill/undotree',
     keys = {
-      { '<leader>u', vim.cmd.UndotreeToggle, desc = 'Undotree Toggle' },
+      { '<leader>tu', vim.cmd.UndotreeToggle, desc = '[T]oggle [U]ndotree ' },
     },
   },
 }

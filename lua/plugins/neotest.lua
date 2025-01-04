@@ -15,7 +15,7 @@ return {
 
       vim.keymap.set('n', '<leader>tc', function()
         neotest.run.run()
-      end)
+      end, { desc = '[T]est [C]ode' })
 
       return {
         adapters = {
