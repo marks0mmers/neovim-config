@@ -1,6 +1,6 @@
-require('marks0mmers.remap')
-require('marks0mmers.lazy_init')
-require('marks0mmers.set')
+require('remap')
+require('lazy_init')
+require('set')
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',

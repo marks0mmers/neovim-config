@@ -16,6 +16,7 @@ return {
   {
     'williamboman/mason-lspconfig.nvim',
     opts = function()
+      local lspconfig = require('lspconfig')
       local capabilities = vim.tbl_deep_extend('force', {}, vim.lsp.protocol.make_client_capabilities(), require('cmp_nvim_lsp').default_capabilities())
 
       return {
@@ -35,10 +36,10 @@ return {
         },
         handlers = {
           function(server_name)
-            require('lspconfig')[server_name].setup({ capabilities = capabilities })
+            lspconfig[server_name].setup({ capabilities = capabilities })
           end,
           ['lua_ls'] = function()
-            require('lspconfig').lua_ls.setup({
+            lspconfig.lua_ls.setup({
               capabilities = capabilities,
               settings = {
                 Lua = {
@@ -49,18 +50,15 @@ return {
               },
             })
           end,
+          jdtls = function()
+            lspconfig.jdtls.setup({ capabilities = capabilities })
+          end,
         },
       }
     end,
   },
   {
     'neovim/nvim-lspconfig',
-    config = function()
-      local capabilities = vim.tbl_deep_extend('force', {}, vim.lsp.protocol.make_client_capabilities(), require('cmp_nvim_lsp').default_capabilities())
-      local lspconfig = require('lspconfig')
-      lspconfig.jdtls.setup({ capabilities = capabilities })
-      lspconfig.gleam.setup({ capabilities = capabilities })
-    end,
     init = function()
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
@@ -75,7 +73,7 @@ return {
           map('gr', '[G]oto [R]eferences', function()
             fzf.lsp_references({ jump_to_single_result = true, ignore_current_line = true })
           end)
-          map('gI', '[G]oto [I]mplementation', function()
+          map('gi', '[G]oto [I]mplementation', function()
             fzf.lsp_implementations({ jump_to_single_result = true, ignore_current_line = true })
           end)
           map('<leader>lD', 'Type [D]efinition', function()

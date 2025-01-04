@@ -1,1 +1,1 @@
-require('marks0mmers')
+require('init')
