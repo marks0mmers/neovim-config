@@ -101,4 +101,10 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter' }, -- if you install parsers with `nvim-treesitter`
     opts = {},
   },
+  {
+    'mbbill/undotree',
+    keys = {
+      { '<leader>u', vim.cmd.UndotreeToggle, desc = 'Undotree Toggle' },
+    },
+  },
 }
