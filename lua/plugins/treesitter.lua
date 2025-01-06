@@ -34,6 +34,10 @@ return {
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
+    -- don't know why you have to do this
+    config = function(_, opts)
+      require('nvim-treesitter.configs').setup(opts)
+    end
   },
   {
     'windwp/nvim-ts-autotag',
