@@ -1,5 +1,4 @@
 return {
-  'brenoprata10/nvim-highlight-colors',
   {
     'alexghergh/nvim-tmux-navigation',
     opts = {
@@ -40,55 +39,12 @@ return {
     },
     opts = {},
   },
-  {
-    'folke/tokyonight.nvim',
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
-  {
-    'folke/todo-comments.nvim',
-    event = 'VimEnter',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = {
-      signs = false,
-    },
-  },
   { 'echasnovski/mini.ai', opts = { n_lines = 500 } },
   { 'echasnovski/mini.surround' },
   { 'echasnovski/mini.comment', opts = {} },
   {
     'echasnovski/mini.statusline',
     opts = { use_icons = vim.g.have_nerd_font },
-  },
-  {
-    'folke/snacks.nvim',
-    priority = 1000,
-    opts = {
-      notifier = {},
-    },
-  },
-  {
-    'folke/which-key.nvim',
-    event = 'VimEnter',
-    opts = function()
-      require('which-key').add({
-        { '<leader>l', group = '[L]SP' },
-        { '<leader>d', group = '[D]ocument' },
-        { '<leader>r', group = '[R]ename' },
-        { '<leader>f', group = '[F]ind' },
-        { '<leader>t', group = '[T]est/Toggle' },
-        { '<leader>g', group = '[G]it' },
-        { '<leader>s', group = '[S]plit' },
-        { '<leader>gh', group = 'Git [H]unk', mode = { 'n', 'v' } },
-        { '<leader>gd', group = 'Git [D]iff' },
-      })
-    end,
-  },
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    opts = {},
   },
   {
     'vuki656/package-info.nvim',
