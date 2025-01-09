@@ -57,6 +57,7 @@ return {
   },
   { 'echasnovski/mini.ai', opts = { n_lines = 500 } },
   { 'echasnovski/mini.surround' },
+  { 'echasnovski/mini.comment', opts = {} },
   {
     'echasnovski/mini.statusline',
     opts = { use_icons = vim.g.have_nerd_font },

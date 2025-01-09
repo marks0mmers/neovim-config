@@ -12,23 +12,22 @@ return {
   { 'j-hui/fidget.nvim', opts = {} },
   { 'hrsh7th/cmp-nvim-lsp' },
   { 'Bilal2453/luvit-meta', lazy = true },
-  {
-    'folke/lazydev.nvim',
-    ft = 'lua',
-    opts = {
-      library = {
-        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
-      },
-    },
-  },
   { 'williamboman/mason.nvim', opts = {} },
   {
     'williamboman/mason-lspconfig.nvim',
     opts = function()
       local lspconfig = require('lspconfig')
       local cmp_lsp = require('cmp_nvim_lsp')
-      local capabilities = vim.tbl_deep_extend('force', {}, vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities())
+      -- stylua: ignore
+      local capabilities = vim.tbl_deep_extend(
+        'force',
+        {},
+        vim.lsp.protocol.make_client_capabilities(),
+        cmp_lsp.default_capabilities()
+      )
 
+      --- @module 'mason-lspconfig'
+      --- @type MasonLspconfigSettings
       return {
         automatic_installation = true,
         ensure_installed = {

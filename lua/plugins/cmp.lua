@@ -3,6 +3,17 @@ return {
   event = 'InsertEnter',
   dependencies = {
     { 'L3MON4D3/LuaSnip', build = 'make install_jsregexp' },
+    {
+      'folke/lazydev.nvim',
+      ft = 'lua',
+      --- @module 'lazydev'
+      --- @type lazydev.Config
+      opts = {
+        library = {
+          { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        },
+      },
+    },
     'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
@@ -14,6 +25,8 @@ return {
     local lspkind = require('lspkind')
     luasnip.config.setup({})
 
+    --- @module 'cmp'
+    --- @type cmp.ConfigSchema
     return {
       snippet = {
         expand = function(args)
@@ -21,6 +34,8 @@ return {
         end,
       },
       formatting = {
+        fields = { 'abbr', 'kind', 'menu' },
+        expandable_indicator = true,
         format = lspkind.cmp_format({
           mode = 'symbol_text',
           menu = {
