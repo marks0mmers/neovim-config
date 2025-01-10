@@ -35,6 +35,26 @@ vim.opt.expandtab = true
 
 vim.g.netrw_liststyle = 3
 
+local signs = {
+  ERROR = '',
+  WARN = '',
+  HINT = '󰌵',
+  INFO = '',
+}
+
+vim.fn.sign_define('DiagnosticSignError', { text = signs.ERROR, texthl = 'DiagnosticSignError' })
+vim.fn.sign_define('DiagnosticSignWarn', { text = signs.WARN, texthl = 'DiagnosticSignWarn' })
+vim.fn.sign_define('DiagnosticSignHint', { text = signs.HINT, texthl = 'DiagnosticSignHint' })
+vim.fn.sign_define('DiagnosticSignInfo', { text = signs.INFO, texthl = 'DiagnosticSignInfo' })
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = function(diagnostic)
+      return signs[vim.diagnostic.severity[diagnostic.severity]]
+    end,
+  },
+})
+
 vim.cmd.colorscheme('tokyonight-night')
 vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })

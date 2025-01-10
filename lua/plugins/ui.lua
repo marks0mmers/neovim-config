@@ -1,6 +1,5 @@
 return {
   'brenoprata10/nvim-highlight-colors',
-  { 'stevearc/dressing.nvim', opts = {} },
   {
     'stevearc/quicker.nvim',
     event = 'FileType qf',
@@ -26,6 +25,10 @@ return {
     },
   },
   {
+    'echasnovski/mini.statusline',
+    opts = { use_icons = vim.g.have_nerd_font },
+  },
+  {
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
@@ -42,14 +45,14 @@ return {
   {
     'folke/snacks.nvim',
     priority = 1000,
+    ---@module "snacks"
+    ---@type snacks.Config
     opts = {
+      indent = {},
+      input = {},
       notifier = {},
+      statuscolumn = {},
     },
-  },
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    opts = {},
   },
   {
     'folke/which-key.nvim',
@@ -57,7 +60,7 @@ return {
     opts = function()
       require('which-key').add({
         { '<leader>l', group = '[L]SP' },
-        { '<leader>d', group = '[D]ocument' },
+        { '<leader>x', group = '[X]plain Trouble' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>f', group = '[F]ind' },
         { '<leader>t', group = '[T]est/Toggle' },
@@ -67,5 +70,37 @@ return {
         { '<leader>gd', group = 'Git [D]iff' },
       })
     end,
+  },
+  {
+    'folke/trouble.nvim',
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = 'Trouble',
+    keys = {
+      {
+        '<leader>xx',
+        '<cmd>Trouble diagnostics toggle focus=true<cr>',
+        desc = 'Diagnostics',
+      },
+      {
+        '<leader>xX',
+        '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',
+        desc = 'Buffer Diagnostics',
+      },
+      {
+        '<leader>xs',
+        '<cmd>Trouble symbols toggle focus=false<cr>',
+        desc = 'Symbols',
+      },
+      {
+        '<leader>xl',
+        '<cmd>Trouble lsp toggle focus=false win.position=right<cr>',
+        desc = 'LSP Definitions / references',
+      },
+      {
+        '<leader>xq',
+        '<cmd>Trouble qflist toggle<cr>',
+        desc = 'Quickfix List',
+      },
+    },
   },
 }

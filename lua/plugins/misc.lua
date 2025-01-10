@@ -1,4 +1,5 @@
 return {
+  { 'nmac427/guess-indent.nvim', opts = {} },
   {
     'alexghergh/nvim-tmux-navigation',
     opts = {
@@ -40,12 +41,7 @@ return {
     opts = {},
   },
   { 'echasnovski/mini.ai', opts = { n_lines = 500 } },
-  { 'echasnovski/mini.surround' },
   { 'echasnovski/mini.comment', opts = {} },
-  {
-    'echasnovski/mini.statusline',
-    opts = { use_icons = vim.g.have_nerd_font },
-  },
   {
     'vuki656/package-info.nvim',
     dependencies = {
