@@ -34,7 +34,7 @@ return {
           'gopls',
           'pyright',
           'rust_analyzer',
-          'ts_ls',
+          'vtsls',
           'tailwindcss',
           'ols',
           'jsonls',
