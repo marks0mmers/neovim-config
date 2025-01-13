@@ -21,8 +21,23 @@ return {
     },
   },
   {
-    'echasnovski/mini.statusline',
-    opts = { use_icons = vim.g.have_nerd_font },
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      extensions = { 'oil', 'fzf', 'fugitive', 'mason', 'trouble' },
+      options = {
+        component_separators = { left = '│', right = '│' },
+        section_separators = '',
+      },
+      sections = {
+        lualine_b = { 'diff', 'diagnostics' },
+        lualine_x = { 'encoding', { 'filetype', icon = { align = 'right' } } },
+        lualine_y = { 'progress', 'location' },
+        lualine_z = {
+          function() return vim.uv.os_gethostname():match('(.+)%..*') end,
+        },
+      },
+    },
   },
   {
     'folke/tokyonight.nvim',
