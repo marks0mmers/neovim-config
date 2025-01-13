@@ -11,12 +11,6 @@ return {
       'nvim-neotest/neotest-go',
     },
     opts = function()
-      local neotest = require('neotest')
-
-      vim.keymap.set('n', '<leader>tc', function()
-        neotest.run.run()
-      end, { desc = '[T]est [C]ode' })
-
       return {
         adapters = {
           require('neotest-go'),

@@ -29,9 +29,7 @@ return {
     --- @type cmp.ConfigSchema
     return {
       snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
+        expand = function(args) luasnip.lsp_expand(args.body) end,
       },
       formatting = {
         fields = { 'abbr', 'kind', 'menu' },
@@ -58,14 +56,10 @@ return {
         ['<S-Tab>'] = cmp.mapping.select_prev_item(),
         ['<C-Space>'] = cmp.mapping.complete({}),
         ['<C-l>'] = cmp.mapping(function()
-          if luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          end
+          if luasnip.expand_or_locally_jumpable() then luasnip.expand_or_jump() end
         end, { 'i', 's' }),
         ['<C-h>'] = cmp.mapping(function()
-          if luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          end
+          if luasnip.locally_jumpable(-1) then luasnip.jump(-1) end
         end, { 'i', 's' }),
       }),
       sources = {

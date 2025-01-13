@@ -9,16 +9,12 @@ return {
       keys = {
         {
           '>',
-          function()
-            require('quicker').expand({ before = 2, after = 2, add_to_existing = true })
-          end,
+          function() require('quicker').expand({ before = 2, after = 2, add_to_existing = true }) end,
           desc = 'Expand quickfix content',
         },
         {
           '<',
-          function()
-            require('quicker').collapse()
-          end,
+          function() require('quicker').collapse() end,
           desc = 'Collapse quickfix content',
         },
       },
@@ -38,6 +34,8 @@ return {
     'folke/todo-comments.nvim',
     event = 'VimEnter',
     dependencies = { 'nvim-lua/plenary.nvim' },
+    ---@module "todo-comments"
+    ---@type TodoOptions
     opts = {
       signs = false,
     },
@@ -56,24 +54,27 @@ return {
   },
   {
     'folke/which-key.nvim',
-    event = 'VimEnter',
-    opts = function()
-      require('which-key').add({
+    event = 'VeryLazy',
+    ---@module "which-key"
+    ---@type wk.Opts
+    opts = {
+      preset = 'helix',
+      spec = {
         { '<leader>l', group = '[L]SP' },
         { '<leader>x', group = '[X]plain Trouble' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>f', group = '[F]ind' },
-        { '<leader>t', group = '[T]est/Toggle' },
+        { '<leader>t', group = '[T]oggle' },
         { '<leader>g', group = '[G]it' },
         { '<leader>s', group = '[S]plit' },
         { '<leader>gh', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { '<leader>gd', group = 'Git [D]iff' },
-      })
-    end,
+      },
+    },
   },
   {
     'folke/trouble.nvim',
-    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    opts = {},
     cmd = 'Trouble',
     keys = {
       {
