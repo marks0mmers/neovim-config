@@ -103,6 +103,8 @@ return {
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map('<leader>th', '[T]oggle Inlay [H]ints', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end)
           end
+
+          vim.diagnostic.config({ virtual_text = false })
         end,
       })
     end,
