@@ -79,6 +79,8 @@ return {
         { '<leader>x', group = '[X]plain Trouble' },
         { '<leader>r', group = '[R]ename' },
         { '<leader>f', group = '[F]ind' },
+        { '<leader>n', group = '[N]otes' },
+        { '<leader>d', group = '[D]ebug' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>g', group = '[G]it' },
         { '<leader>s', group = '[S]plit' },
