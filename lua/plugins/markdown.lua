@@ -35,20 +35,13 @@ return {
     },
   },
   {
-    'MeanderingProgrammer/render-markdown.nvim',
+    'OXY2DEV/markview.nvim',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
       'nvim-tree/nvim-web-devicons',
     },
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
-    opts = {
-      anti_conceal = {
-        ignore = {
-          link = true,
-        },
-      },
-    },
-    init = function() vim.keymap.set('n', '<leader>tm', '<cmd>RenderMarkdown toggle<CR>', { desc = '[M]arkdown Render' }) end,
+    lazy = false,
+    opts = {},
+    init = function() vim.keymap.set('n', '<leader>tm', '<cmd>Markview toggleAll<CR>', { desc = '[M]arkdown Render' }) end,
   },
 }
