@@ -1,20 +1,6 @@
 return {
   { 'nmac427/guess-indent.nvim', opts = {} },
   {
-    'alexghergh/nvim-tmux-navigation',
-    opts = {
-      disable_when_zoomed = true,
-      keybindings = {
-        left = '<C-w><C-h>',
-        down = '<C-w><C-j>',
-        up = '<C-w><C-k>',
-        right = '<C-w><C-l>',
-        last_active = '<C-w><C-\\>',
-        next = '<C-w><C-Space>',
-      },
-    },
-  },
-  {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
     dependencies = { 'hrsh7th/nvim-cmp' },

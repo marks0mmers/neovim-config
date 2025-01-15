@@ -18,13 +18,7 @@ return {
     opts = function()
       local lspconfig = require('lspconfig')
       local cmp_lsp = require('cmp_nvim_lsp')
-      -- stylua: ignore
-      local capabilities = vim.tbl_deep_extend(
-        'force',
-        {},
-        vim.lsp.protocol.make_client_capabilities(),
-        cmp_lsp.default_capabilities()
-      )
+      local capabilities = vim.tbl_deep_extend('force', {}, vim.lsp.protocol.make_client_capabilities(), cmp_lsp.default_capabilities())
 
       --- @module 'mason-lspconfig'
       --- @type MasonLspconfigSettings
@@ -87,21 +81,25 @@ return {
           local map = function(keys, desc, func) vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc }) end
 
           map('gd', '[G]oto [D]efinition', function() fzf.lsp_definitions(fzf_opts) end)
-          map('gr', '[G]oto [R]eferences', function() fzf.lsp_references(fzf_opts) end)
+          map('gR', '[G]oto [R]eferences', function() fzf.lsp_references(fzf_opts) end)
           map('gi', '[G]oto [I]mplementation', function() fzf.lsp_implementations(fzf_opts) end)
+          map('gr', '[N]ative [R]eferences', vim.lsp.buf.references)
+          map('gD', '[G]oto [D]eclaration', vim.lsp.buf.declaration)
           map('<leader>lD', 'Type [D]efinition', function() fzf.lsp_typedefs(fzf_opts) end)
-          map('gR', '[N]ative [R]eferences', vim.lsp.buf.references)
           map('<leader>ls', 'Document [S]ymbols', fzf.lsp_document_symbols)
           map('<leader>lr', '[R]ename Symbol', vim.lsp.buf.rename)
           map('<leader>la', 'Code [A]ctions', vim.lsp.buf.code_action)
-          map('<leader>lq', 'Diagnostic [Q]uickfix list', vim.diagnostic.setloclist)
           map('<Leader>ld', 'Hover diagnostics', vim.diagnostic.open_float)
           map('<leader>li', '[I]nfo', '<cmd>LspInfo<CR>')
-          map('gD', '[G]oto [D]eclaration', vim.lsp.buf.declaration)
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            map('<leader>th', '[T]oggle Inlay [H]ints', function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end)
+            vim.keymap.set(
+              'n',
+              '<leader>th',
+              function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end,
+              { desc = '[T]oggle Inlay [H]ints' }
+            )
           end
 
           vim.diagnostic.config({ virtual_text = false })
