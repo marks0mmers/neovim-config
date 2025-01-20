@@ -1,6 +1,7 @@
 return {
   {
     'nvim-java/nvim-java',
+    ft = 'java',
     opts = {
       root_markers = {
         'mvnw',

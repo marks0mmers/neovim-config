@@ -11,6 +11,9 @@ return {
       'nvim-neotest/neotest-go',
       { 'lawrence-laz/neotest-zig', version = '1.3.*' },
     },
+    keys = {
+      { '<leader>tt', '<cmd>Neotest run<CR>', desc = '[T]est' },
+    },
     opts = function()
       return {
         adapters = {
