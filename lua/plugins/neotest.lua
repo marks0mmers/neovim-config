@@ -10,6 +10,9 @@ return {
       'nvim-treesitter/nvim-treesitter',
       'nvim-neotest/neotest-go',
     },
+    keys = {
+      { '<leader>tt', '<cmd>Neotest run<CR>', desc = '[T]est' },
+    },
     opts = function()
       return {
         adapters = {

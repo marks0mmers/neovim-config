@@ -40,7 +40,7 @@ return {
         map('n', '<leader>ghr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk' })
         map('n', '<leader>ghb', gitsigns.blame_line, { desc = 'git [b]lame line' })
         map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
-        map('n', '<leader>tD', gitsigns.toggle_deleted, { desc = '[T]oggle git show [D]eleted' })
+        map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = '[T]oggle git show [D]eleted' })
       end,
     },
   },
