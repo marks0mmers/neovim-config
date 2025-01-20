@@ -39,8 +39,8 @@ return {
         map('v', '<leader>ghr', function() gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end, { desc = 'reset git hunk' })
         map('n', '<leader>ghr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk' })
         map('n', '<leader>ghb', gitsigns.blame_line, { desc = 'git [b]lame line' })
-        map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
-        map('n', '<leader>tD', gitsigns.toggle_deleted, { desc = '[T]oggle git show [D]eleted' })
+        map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = 'Git show [b]lame line' })
+        map('n', '<leader>tD', gitsigns.toggle_deleted, { desc = 'Git show [D]eleted' })
       end,
     },
   },

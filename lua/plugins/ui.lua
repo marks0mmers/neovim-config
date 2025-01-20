@@ -43,7 +43,7 @@ return {
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
-    opts = {},
+    opts = function() vim.cmd.colorscheme('tokyonight-night') end,
   },
   {
     'folke/todo-comments.nvim',
@@ -81,7 +81,7 @@ return {
         { '<leader>f', group = '[F]ind' },
         { '<leader>n', group = '[N]otes' },
         { '<leader>d', group = '[D]ebug' },
-        { '<leader>t', group = '[T]oggle' },
+        { '<leader>t', group = '[T]oggle/[T]est' },
         { '<leader>g', group = '[G]it' },
         { '<leader>s', group = '[S]plit' },
         { '<leader>gh', group = 'Git [H]unk', mode = { 'n', 'v' } },

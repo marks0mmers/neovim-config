@@ -110,7 +110,7 @@ return {
               'n',
               '<leader>th',
               function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end,
-              { desc = '[T]oggle Inlay [H]ints' }
+              { desc = 'Inlay [H]ints' }
             )
           end
 

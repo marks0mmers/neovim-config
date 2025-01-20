@@ -3,6 +3,7 @@ return {
   dependencies = {
     'rafamadriz/friendly-snippets',
     'onsails/lspkind.nvim',
+    { 'saghen/blink.compat', lazy = true, version = false },
   },
   version = '*',
   ---@module "blink.cmp"
@@ -18,6 +19,9 @@ return {
         auto_brackets = {
           enabled = true,
         },
+      },
+      documentation = {
+        window = { border = 'rounded' },
       },
       menu = {
         border = 'rounded',
@@ -40,8 +44,22 @@ return {
       window = { border = 'rounded' },
     },
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'obsidian', 'obsidian_new', 'obsidian_tags' },
+      providers = {
+        obsidian = {
+          name = 'obsidian',
+          module = 'blink.compat.source',
+        },
+        obsidian_new = {
+          name = 'obsidian_new',
+          module = 'blink.compat.source',
+        },
+        obsidian_tags = {
+          name = 'obsidian_tags',
+          module = 'blink.compat.source',
+        },
+      },
     },
   },
-  opts_extend = { 'sources.default' },
+  opts_extend = { 'sources.default', 'sources.completion.enabled_providers' },
 }

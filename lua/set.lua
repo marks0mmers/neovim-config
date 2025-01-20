@@ -5,9 +5,7 @@ vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
 vim.opt.showmode = false
 
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
+vim.schedule(function() vim.opt.clipboard = 'unnamedplus' end)
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -32,6 +30,9 @@ vim.opt.scrolloff = 10
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldlevel = 9
 
 vim.g.netrw_liststyle = 3
 
@@ -49,12 +50,9 @@ vim.fn.sign_define('DiagnosticSignInfo', { text = signs.INFO, texthl = 'Diagnost
 
 vim.diagnostic.config({
   virtual_text = {
-    prefix = function(diagnostic)
-      return signs[vim.diagnostic.severity[diagnostic.severity]]
-    end,
+    prefix = function(diagnostic) return signs[vim.diagnostic.severity[diagnostic.severity]] end,
   },
 })
 
-vim.cmd.colorscheme('tokyonight-night')
 vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
 vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })

@@ -40,8 +40,22 @@ return {
       'nvim-treesitter/nvim-treesitter',
       'nvim-tree/nvim-web-devicons',
     },
+    priority = 500,
     lazy = false,
-    opts = {},
+    opts = {
+      injections = {
+        languages = {
+          markdown = {
+            overwrite = true,
+            query = [[
+                    (section
+                        (atx_headng) @injections.mkv.fold
+                        (#set! @fold))
+                ]],
+          },
+        },
+      },
+    },
     init = function() vim.keymap.set('n', '<leader>tm', '<cmd>Markview toggleAll<CR>', { desc = '[M]arkdown Render' }) end,
   },
 }

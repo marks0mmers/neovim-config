@@ -9,6 +9,7 @@ return {
       'marilari88/neotest-vitest',
       'nvim-treesitter/nvim-treesitter',
       'nvim-neotest/neotest-go',
+      { 'lawrence-laz/neotest-zig', version = '1.3.*' },
     },
     opts = function()
       return {
@@ -16,6 +17,11 @@ return {
           require('neotest-go'),
           require('neotest-vitest'),
           require('neotest-plenary'),
+          require('neotest-zig')({
+            dap = {
+              adapter = 'lldb',
+            },
+          }),
         },
       }
     end,
