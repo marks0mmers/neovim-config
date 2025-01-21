@@ -49,6 +49,7 @@ return {
           'lemminx',
           'ocamllsp',
           'lua_ls',
+          'cssls',
         },
         handlers = {
           function(server_name) lspconfig[server_name].setup({ capabilities = capabilities }) end,
