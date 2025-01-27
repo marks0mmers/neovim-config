@@ -3,7 +3,6 @@ return {
     'epwalsh/obsidian.nvim',
     version = '*',
     lazy = true,
-    enabled = false,
     ft = 'markdown',
     dependencies = {
       'nvim-lua/plenary.nvim',
