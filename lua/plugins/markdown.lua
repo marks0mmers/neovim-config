@@ -3,6 +3,7 @@ return {
     'epwalsh/obsidian.nvim',
     version = '*',
     lazy = true,
+    enabled = false,
     ft = 'markdown',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -42,20 +43,7 @@ return {
     },
     priority = 500,
     lazy = false,
-    opts = {
-      injections = {
-        languages = {
-          markdown = {
-            overwrite = true,
-            query = [[
-                    (section
-                        (atx_headng) @injections.mkv.fold
-                        (#set! @fold))
-                ]],
-          },
-        },
-      },
-    },
+    opts = {},
     init = function() vim.keymap.set('n', '<leader>tm', '<cmd>Markview toggleAll<CR>', { desc = '[M]arkdown Render' }) end,
   },
 }

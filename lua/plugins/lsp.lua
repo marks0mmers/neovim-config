@@ -33,6 +33,19 @@ return {
       local cmp = require('blink.cmp')
       local capabilities = cmp.get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+      lspconfig.zls.setup({
+        root_dir = lspconfig.util.root_pattern('.git', 'build.zig', 'zls.json'),
+        settings = {
+          zls = {
+            enable_inlay_hints = true,
+            enable_snippets = true,
+            warn_style = true,
+          },
+        },
+      })
+      vim.g.zig_fmt_parse_errors = 0
+      vim.g.zig_fmt_autosave = 0
+
       --- @module 'mason-lspconfig'
       --- @type MasonLspconfigSettings
       return {
@@ -65,20 +78,7 @@ return {
               },
             })
           end,
-          zls = function()
-            lspconfig.zls.setup({
-              root_dir = lspconfig.util.root_pattern('.git', 'build.zig', 'zls.json'),
-              settings = {
-                zls = {
-                  enable_inlay_hints = true,
-                  enable_snippets = true,
-                  warn_style = true,
-                },
-              },
-            })
-            vim.g.zig_fmt_parse_errors = 0
-            vim.g.zig_fmt_autosave = 0
-          end,
+          zls = function() end,
           jdtls = function() lspconfig.jdtls.setup({ capabilities = capabilities }) end,
         },
       }

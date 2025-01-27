@@ -9,6 +9,7 @@ return {
       'marilari88/neotest-vitest',
       'nvim-treesitter/nvim-treesitter',
       'nvim-neotest/neotest-go',
+      'rouge8/neotest-rust',
       { 'lawrence-laz/neotest-zig', version = '1.3.*' },
     },
     keys = {
@@ -18,6 +19,7 @@ return {
       return {
         adapters = {
           require('neotest-go'),
+          require('neotest-rust'),
           require('neotest-vitest'),
           require('neotest-plenary'),
           require('neotest-zig')({
