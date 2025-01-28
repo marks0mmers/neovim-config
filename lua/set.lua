@@ -28,6 +28,10 @@ vim.opt.scrolloff = 10
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldlevel = 999
+
 vim.opt.exrc = true
 vim.opt.secure = true
 local workspace_path = vim.fn.getcwd()

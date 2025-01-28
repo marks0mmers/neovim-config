@@ -40,6 +40,6 @@ return {
     priority = 500,
     lazy = false,
     opts = {},
-    init = function() vim.keymap.set('n', '<leader>tm', '<cmd>Markview toggleAll<CR>', { desc = '[M]arkdown Render' }) end,
+    init = function() vim.keymap.set('n', '<leader>tm', '<cmd>Markview toggle<CR>', { desc = '[M]arkdown Render' }) end,
   },
 }
