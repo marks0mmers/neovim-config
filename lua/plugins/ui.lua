@@ -54,7 +54,7 @@ return {
     ---@module "which-key"
     ---@type wk.Opts
     opts = {
-      preset = 'helix',
+      preset = 'modern',
       spec = {
         { '<leader>l', group = '[L]SP' },
         { '<leader>x', group = '[X]plain Trouble' },
