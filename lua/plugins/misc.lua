@@ -34,8 +34,6 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     opts = { use_default_keymaps = false },
     keys = {
-      { '<leader>sj', '<cmd>TSJJoin<CR>', desc = '[J]oin' },
-      { '<leader>ss', '<cmd>TSJSplit<CR>', desc = '[S]plit' },
       { '<leader>st', '<cmd>TSJToggle<CR>', desc = '[T]oggle' },
     },
   },

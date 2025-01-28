@@ -1,5 +1,3 @@
-vim.g.have_nerd_font = true
-
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
@@ -30,8 +28,13 @@ vim.opt.scrolloff = 10
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
-
-vim.g.netrw_liststyle = 3
+vim.opt.exrc = true
+vim.opt.secure = true
+local workspace_path = vim.fn.getcwd()
+local cache_dir = vim.fn.stdpath('data')
+local unique_id = vim.fn.fnamemodify(workspace_path, ':t') .. '_' .. vim.fn.sha256(workspace_path):sub(1, 8)
+local shadafile = cache_dir .. '/shadas/' .. unique_id .. '.shada'
+vim.opt.shadafile = shadafile
 
 local signs = {
   ERROR = '',

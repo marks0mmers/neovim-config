@@ -3,6 +3,16 @@ return {
   dependencies = {
     'rafamadriz/friendly-snippets',
     'onsails/lspkind.nvim',
+    {
+      'xzbdmw/colorful-menu.nvim',
+      opts = {
+        ls = {
+          vtsls = {
+            extra_info_hl = '@comment',
+          },
+        },
+      },
+    },
     { 'saghen/blink.compat', lazy = true, version = false },
   },
   version = '*',
@@ -26,12 +36,16 @@ return {
       menu = {
         border = 'rounded',
         draw = {
-          columns = { { 'kind_icon', 'label', 'label_description', gap = 1 }, { 'kind' } },
+          columns = { { 'label', 'kind_icon', 'label_description', gap = 1 }, { 'kind' } },
           components = {
+            label = {
+              text = function(ctx) return require('colorful-menu').blink_components_text(ctx) end,
+              highlight = function(ctx) return require('colorful-menu').blink_components_highlight(ctx) end,
+            },
             kind_icon = {
               text = function(item)
                 local kind = require('lspkind').symbol_map[item.kind] or ''
-                return kind .. ' '
+                return kind
               end,
               highlight = 'CmpItemKind',
             },
@@ -44,7 +58,7 @@ return {
       window = { border = 'rounded' },
     },
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', 'obsidian', 'obsidian_new', 'obsidian_tags' },
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'cmdline', 'obsidian', 'obsidian_new', 'obsidian_tags' },
       providers = {
         obsidian = {
           name = 'obsidian',

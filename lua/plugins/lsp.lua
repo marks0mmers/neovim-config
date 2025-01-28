@@ -10,6 +10,7 @@ return {
       },
     },
   },
+  { 'Bilal2453/luvit-meta', lazy = true },
   {
     'folke/lazydev.nvim',
     ft = 'lua',
@@ -23,8 +24,6 @@ return {
   },
 
   { 'j-hui/fidget.nvim', opts = {} },
-  { 'saghen/blink.cmp' },
-  { 'Bilal2453/luvit-meta', lazy = true },
   { 'williamboman/mason.nvim', opts = {} },
   {
     'williamboman/mason-lspconfig.nvim',
@@ -78,7 +77,6 @@ return {
               },
             })
           end,
-          zls = function() end,
           jdtls = function() lspconfig.jdtls.setup({ capabilities = capabilities }) end,
         },
       }
