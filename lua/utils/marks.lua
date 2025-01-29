@@ -31,103 +31,53 @@ local globalMarks = {
 
 ---@return {[string]: vim.api.keyset.get_mark}
 M.get_mark_table = function()
-  local marks = {}
-  for _, v in ipairs(globalMarks) do
-    local mark = vim.api.nvim_get_mark(v, {}) ---@type vim.api.keyset.get_mark
-    if mark[1] ~= 0 then marks[v] = mark end
-  end
+  local marks = vim.iter(globalMarks):fold({}, function(acc, m)
+    local mark = vim.api.nvim_get_mark(m, {})
+    if mark[1] ~= 0 then acc[m] = mark end
+    return acc
+  end)
   table.sort(marks, function(a, b) return a[1] < b[1] end)
   return marks
 end
 
--- M.select_mark = function()
---   local marks = M.get_mark_table()
---   local option_labels = {}
---   for key, _ in pairs(marks) do
---     table.insert(option_labels, key)
---   end
---   table.sort(option_labels)
---   vim.ui.select(option_labels, {
---     winopts = {
---       height = 0.5,
---     },
---     prompt = 'Select Mark: ',
---     format_item = function(item)
---       local filename_only = vim.fn.fnamemodify(marks[item][4], ':t')
---       local formatted_label = item .. ' - ' .. filename_only
---       return formatted_label
---     end,
---   }, function(mark)
---     if mark then vim.cmd("normal! '" .. mark) end
---   end)
--- end
-
 ---@param filename string
 ---@return string|nil
 M.get_mark = function(filename)
-  local marks = M.get_mark_table()
-  for mark, fileinfo in pairs(marks) do
-    if vim.fn.fnamemodify(fileinfo[4], ':t') == filename then return mark end
-  end
-  return nil
+  return vim.iter(M:get_mark_table()):find(function(_, fileinfo) return vim.fn.fnamemodify(fileinfo[4], ':t') == filename end)
 end
 
 M.add_file_to_marks = function()
   local marks = M.get_mark_table()
-  for _, fileinfo in pairs(marks) do
-    local filename = fileinfo[4]
-    local current_filename = vim.api.nvim_buf_get_name(0)
-    if current_filename == vim.fn.expand(filename) then return end
-  end
-  for _, v in ipairs(globalMarks) do
-    if marks[v] == nil then
-      vim.cmd('normal! m' .. v)
-      return
-    end
+  local mark_exists = vim.iter(marks):any(function(_, fileinfo) return vim.api.nvim_buf_get_name(0) == vim.fn.expand(fileinfo[4]) end)
+  if not mark_exists then
+    local empty = vim.iter(globalMarks):find(function(m) return marks[m] == nil end)
+    vim.cmd('normal! m' .. empty)
   end
 end
 
 M.next_mark = function()
   local marks = M.get_mark_table()
-  local current_mark = M.get_mark(vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t'))
-  if current_mark == nil then
+  local curr = M.get_mark(vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t'))
+  if curr == nil then
     vim.cmd("normal! 'A")
-  else
-    local index = nil
-    for i, v in ipairs(globalMarks) do
-      if v == current_mark then index = i end
-    end
-    if marks[globalMarks[index + 1]] == nil then
-      vim.cmd("normal! 'A")
-    else
-      vim.cmd("normal! '" .. globalMarks[index + 1])
-    end
+    return
   end
+  local idx = vim.iter(ipairs(globalMarks)):find(function(_, v) return v == curr end)
+  local mark = marks[globalMarks[idx + 1]] ~= nil and globalMarks[idx + 1] or 'A'
+  vim.cmd("normal! '" .. mark)
 end
 
 M.prev_mark = function()
   local marks = M.get_mark_table()
-  local current_mark = M.get_mark(vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t'))
-  if current_mark == nil then
+  local curr = M.get_mark(vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t'))
+  if curr == nil then
     vim.cmd("normal! 'A")
-  else
-    local index = nil
-    for i, v in ipairs(globalMarks) do
-      if v == current_mark then index = i end
-    end
-    local keys = {}
-    for k, _ in pairs(marks) do
-      table.insert(keys, k)
-    end
-    table.sort(keys, function(a, b) return a > b end)
-    local last_mark = keys[1]
-    if marks[globalMarks[index - 1]] == nil then
-      print(last_mark)
-      vim.cmd("normal! '" .. last_mark)
-    else
-      vim.cmd("normal! '" .. globalMarks[index - 1])
-    end
+    return
   end
+  local idx = vim.iter(ipairs(globalMarks)):find(function(_, v) return v == curr end)
+  local last_mark = vim.iter(marks):map(function(k, _) return k end):fold(globalMarks[1], function(a, b) return a > b and a or b end)
+  local mark = marks[globalMarks[idx - 1]] ~= nil and globalMarks[idx - 1] or last_mark
+  vim.cmd("normal! '" .. mark)
 end
 
 M.clear_global_marks = function()

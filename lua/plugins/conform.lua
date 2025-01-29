@@ -32,6 +32,7 @@ return {
       scss = { 'prettier' },
       go = { 'gofumpt', 'goimports', 'golines' },
       rust = { 'rustfmt' },
+      ocaml = { 'ocamlformat' },
     },
   },
 }
