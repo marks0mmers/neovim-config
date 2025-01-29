@@ -40,27 +40,27 @@ M.get_mark_table = function()
   return marks
 end
 
-M.select_mark = function()
-  local marks = M.get_mark_table()
-  local option_labels = {}
-  for key, _ in pairs(marks) do
-    table.insert(option_labels, key)
-  end
-  table.sort(option_labels)
-  vim.ui.select(option_labels, {
-    winopts = {
-      height = 0.5,
-    },
-    prompt = 'Select Mark: ',
-    format_item = function(item)
-      local filename_only = vim.fn.fnamemodify(marks[item][4], ':t')
-      local formatted_label = item .. ' - ' .. filename_only
-      return formatted_label
-    end,
-  }, function(mark)
-    if mark then vim.cmd("normal! '" .. mark) end
-  end)
-end
+-- M.select_mark = function()
+--   local marks = M.get_mark_table()
+--   local option_labels = {}
+--   for key, _ in pairs(marks) do
+--     table.insert(option_labels, key)
+--   end
+--   table.sort(option_labels)
+--   vim.ui.select(option_labels, {
+--     winopts = {
+--       height = 0.5,
+--     },
+--     prompt = 'Select Mark: ',
+--     format_item = function(item)
+--       local filename_only = vim.fn.fnamemodify(marks[item][4], ':t')
+--       local formatted_label = item .. ' - ' .. filename_only
+--       return formatted_label
+--     end,
+--   }, function(mark)
+--     if mark then vim.cmd("normal! '" .. mark) end
+--   end)
+-- end
 
 ---@param filename string
 ---@return string|nil
