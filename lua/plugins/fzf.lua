@@ -3,7 +3,7 @@ return {
     'ibhagwan/fzf-lua',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     opts = function()
-      local fzf = require('fzf-lua')
+      local fzf = require 'fzf-lua'
 
       fzf.register_ui_select()
       vim.keymap.set('n', '<leader>ff', fzf.files, { desc = '[F]ind [F]iles' })
@@ -18,7 +18,9 @@ return {
       vim.keymap.set('n', '<leader><leader>', fzf.buffers, { desc = '[ ] Find existing buffers' })
       vim.keymap.set('n', '<leader>/', fzf.blines, { desc = '[/] Fuzzily search in current buffer' })
       vim.keymap.set('n', '<leader>f/', fzf.lines, { desc = '[F]ind [/] in Open Files' })
-      vim.keymap.set('n', '<leader>fn', function() fzf.files({ cwd = vim.fn.stdpath('config') }) end, { desc = '[F]ind [N]eovim files' })
+      vim.keymap.set('n', '<leader>fn', function()
+        fzf.files { cwd = vim.fn.stdpath 'config' }
+      end, { desc = '[F]ind [N]eovim files' })
 
       return {
         grep = {

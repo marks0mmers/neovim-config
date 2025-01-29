@@ -18,15 +18,15 @@ return {
     opts = function()
       return {
         adapters = {
-          require('neotest-go'),
-          require('neotest-rust'),
-          require('neotest-vitest'),
-          require('neotest-plenary'),
-          require('neotest-zig')({
+          require 'neotest-go',
+          require 'neotest-rust',
+          require 'neotest-vitest',
+          require 'neotest-plenary',
+          require 'neotest-zig' {
             dap = {
               adapter = 'lldb',
             },
-          }),
+          },
         },
       }
     end,

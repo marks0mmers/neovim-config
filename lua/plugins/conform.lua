@@ -5,7 +5,9 @@ return {
   keys = {
     {
       '<leader>lf',
-      function() require('conform').format({ async = true, lsp_fallback = true }) end,
+      function()
+        require('conform').format { async = true, lsp_fallback = true }
+      end,
       mode = '',
       desc = '[F]ormat buffer',
     },

@@ -16,7 +16,9 @@ return {
             file_status = true,
             symbols = { modified = '  ', readonly = '  ', unnamed = '  ' },
             fmt = function(str)
-              if require('utils.marks').get_mark(str) ~= nil then return '󰐷 ' .. str end
+              if require('utils.marks').get_mark(str) ~= nil then
+                return '󰐷 ' .. str
+              end
               return str
             end,
           },
@@ -25,7 +27,9 @@ return {
         lualine_x = { 'encoding', { 'filetype', icon = { align = 'right' } } },
         lualine_y = { 'progress', 'location' },
         lualine_z = {
-          function() return vim.uv.os_gethostname():match('(.+)%..*') end,
+          function()
+            return vim.uv.os_gethostname():match '(.+)%..*'
+          end,
         },
       },
     },

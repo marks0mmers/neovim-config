@@ -28,11 +28,11 @@ return {
   {
     'williamboman/mason-lspconfig.nvim',
     opts = function()
-      local lspconfig = require('lspconfig')
-      local cmp = require('blink.cmp')
+      local lspconfig = require 'lspconfig'
+      local cmp = require 'blink.cmp'
       local capabilities = cmp.get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-      lspconfig.zls.setup({
+      lspconfig.zls.setup {
         root_dir = lspconfig.util.root_pattern('.git', 'build.zig', 'zls.json'),
         settings = {
           zls = {
@@ -41,7 +41,7 @@ return {
             warn_style = true,
           },
         },
-      })
+      }
       vim.g.zig_fmt_parse_errors = 0
       vim.g.zig_fmt_autosave = 0
 
@@ -64,9 +64,11 @@ return {
           'cssls',
         },
         handlers = {
-          function(server_name) lspconfig[server_name].setup({ capabilities = capabilities }) end,
+          function(server_name)
+            lspconfig[server_name].setup { capabilities = capabilities }
+          end,
           lua_ls = function()
-            lspconfig.lua_ls.setup({
+            lspconfig.lua_ls.setup {
               capabilities = capabilities,
               settings = {
                 Lua = {
@@ -75,9 +77,11 @@ return {
                   },
                 },
               },
-            })
+            }
           end,
-          jdtls = function() lspconfig.jdtls.setup({ capabilities = capabilities }) end,
+          jdtls = function()
+            lspconfig.jdtls.setup { capabilities = capabilities }
+          end,
         },
       }
     end,
@@ -88,16 +92,26 @@ return {
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
         callback = function(event)
-          local fzf = require('fzf-lua')
+          local fzf = require 'fzf-lua'
           local fzf_opts = { jump_to_single_result = true, ignore_current_line = true }
-          local map = function(keys, desc, func) vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc }) end
+          local map = function(keys, desc, func)
+            vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+          end
 
-          map('gd', '[G]oto [D]efinition', function() fzf.lsp_definitions(fzf_opts) end)
-          map('gR', '[G]oto [R]eferences', function() fzf.lsp_references(fzf_opts) end)
-          map('gi', '[G]oto [I]mplementation', function() fzf.lsp_implementations(fzf_opts) end)
+          map('gd', '[G]oto [D]efinition', function()
+            fzf.lsp_definitions(fzf_opts)
+          end)
+          map('gR', '[G]oto [R]eferences', function()
+            fzf.lsp_references(fzf_opts)
+          end)
+          map('gi', '[G]oto [I]mplementation', function()
+            fzf.lsp_implementations(fzf_opts)
+          end)
           map('gr', '[N]ative [R]eferences', vim.lsp.buf.references)
           map('gD', '[G]oto [D]eclaration', vim.lsp.buf.declaration)
-          map('<leader>lD', 'Type [D]efinition', function() fzf.lsp_typedefs(fzf_opts) end)
+          map('<leader>lD', 'Type [D]efinition', function()
+            fzf.lsp_typedefs(fzf_opts)
+          end)
           map('<leader>ls', 'Document [S]ymbols', fzf.lsp_document_symbols)
           map('<leader>lr', '[R]ename Symbol', vim.lsp.buf.rename)
           map('<leader>la', 'Code [A]ctions', vim.lsp.buf.code_action)
@@ -106,15 +120,12 @@ return {
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            vim.keymap.set(
-              'n',
-              '<leader>th',
-              function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf })) end,
-              { desc = 'Inlay [H]ints' }
-            )
+            vim.keymap.set('n', '<leader>th', function()
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+            end, { desc = 'Inlay [H]ints' })
           end
 
-          vim.diagnostic.config({ virtual_text = false })
+          vim.diagnostic.config { virtual_text = false }
         end,
       })
     end,
