@@ -63,6 +63,7 @@ return {
     dev = true,
     opts = {
       dsid = 2702080918,
+      board = 'Team - Production Development',
     },
   },
 }
