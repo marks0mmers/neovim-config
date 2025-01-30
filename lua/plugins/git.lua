@@ -60,6 +60,7 @@ return {
   {
     'radar',
     dir = '~/Developer/Work/m-sommers/nvim-radar',
+    optional = true,
     dev = true,
     opts = {
       dsid = 2702080918,
