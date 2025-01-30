@@ -48,12 +48,21 @@ return {
   },
   {
     'tpope/vim-fugitive',
+    lazy = false,
     keys = {
       { '<leader>gs', '<cmd>G<CR>', desc = '[S]tatus' },
       { '<leader>gp', '<cmd>G pull<CR>', desc = '[P]ull' },
       { '<leader>gds', '<cmd>Gvdiffsplit!<CR>', desc = '[D]iff [S]plit' },
       { '<leader>gdl', '<cmd>diffget //2<CR>', desc = '[D]iff [L]eft' },
       { '<leader>gdr', '<cmd>diffget //2<CR>', desc = '[D]iff [R]ight' },
+    },
+  },
+  {
+    'radar',
+    dir = '~/Developer/Work/m-sommers/nvim-radar',
+    dev = true,
+    opts = {
+      dsid = 2702080918,
     },
   },
 }

@@ -50,7 +50,14 @@ return {
     opts = {
       indent = {},
       input = {},
-      notifier = {},
+      notifier = {
+        filter = function(noti)
+          if noti.msg == 'No information available' then
+            return false
+          end
+          return true
+        end,
+      },
       statuscolumn = {},
     },
   },
