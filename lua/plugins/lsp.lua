@@ -1,7 +1,6 @@
 return {
   {
     'nvim-java/nvim-java',
-    ft = 'java',
     opts = {
       root_markers = {
         'mvnw',
@@ -124,8 +123,6 @@ return {
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, { desc = 'Inlay [H]ints' })
           end
-
-          vim.diagnostic.config { virtual_text = false }
         end,
       })
     end,
