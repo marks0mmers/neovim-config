@@ -1,5 +1,5 @@
 return {
-  'brenoprata10/nvim-highlight-colors',
+  { 'brenoprata10/nvim-highlight-colors', opts = {} },
   {
     'stevearc/quicker.nvim',
     event = 'FileType qf',
@@ -95,14 +95,5 @@ return {
         desc = 'Diagnostics',
       },
     },
-  },
-  {
-    'https://git.sr.ht/~whynothugo/lsp_lines.nvim',
-    opts = function()
-      vim.keymap.set('n', '<leader>tl', function()
-        require('lsp_lines').toggle()
-        vim.diagnostic.config { virtual_text = not vim.diagnostic.config().virtual_text }
-      end, { desc = '[L]SP Lines' })
-    end,
   },
 }
