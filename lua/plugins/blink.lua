@@ -62,21 +62,7 @@ return {
       window = { border = 'rounded' },
     },
     sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer', 'cmdline', 'obsidian', 'obsidian_new', 'obsidian_tags' },
-      providers = {
-        obsidian = {
-          name = 'obsidian',
-          module = 'blink.compat.source',
-        },
-        obsidian_new = {
-          name = 'obsidian_new',
-          module = 'blink.compat.source',
-        },
-        obsidian_tags = {
-          name = 'obsidian_tags',
-          module = 'blink.compat.source',
-        },
-      },
+      default = { 'lsp', 'path', 'snippets', 'buffer', 'cmdline' },
     },
   },
   opts_extend = { 'sources.default', 'sources.completion.enabled_providers' },
