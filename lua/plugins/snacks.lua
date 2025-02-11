@@ -1,6 +1,6 @@
 return {
   'folke/snacks.nvim',
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  dependencies = { 'echasnovski/mini.icons' },
   lazy = false,
   ---@module "snacks"
   ---@type snacks.Config

@@ -1,7 +1,7 @@
 return {
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = { 'echasnovski/mini.icons' },
     opts = {
       extensions = { 'oil', 'fzf', 'fugitive', 'mason', 'trouble' },
       options = {

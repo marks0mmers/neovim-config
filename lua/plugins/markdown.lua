@@ -35,11 +35,15 @@ return {
     'OXY2DEV/markview.nvim',
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
-      'nvim-tree/nvim-web-devicons',
+      'echasnovski/mini.icons',
     },
     priority = 500,
     lazy = false,
-    opts = {},
+    opts = {
+      preview = {
+        icon_provider = 'mini',
+      },
+    },
     init = function() vim.keymap.set('n', '<leader>tm', '<cmd>Markview toggle<CR>', { desc = '[M]arkdown Render' }) end,
   },
 }

@@ -76,6 +76,17 @@ return {
               },
             }
           end,
+          eslint = function()
+            lspconfig.eslint.setup {
+              capabilities = capabilities,
+              on_attach = function(_, bufnr)
+                vim.api.nvim_create_autocmd('BufWritePre', {
+                  buffer = bufnr,
+                  command = 'EslintFixAll',
+                })
+              end,
+            }
+          end,
           jdtls = function() lspconfig.jdtls.setup { capabilities = capabilities } end,
         },
       }
