@@ -17,9 +17,7 @@ return {
       },
       mappings = {
         ['<leader>nc'] = {
-          action = function()
-            return require('obsidian').util.toggle_checkbox()
-          end,
+          action = function() return require('obsidian').util.toggle_checkbox() end,
           opts = { buffer = true, desc = 'Toggle [C]heckbox' },
         },
         ['<leader>no'] = {
@@ -27,9 +25,7 @@ return {
           opts = { buffer = true, desc = '[O]pen in Obsidian' },
         },
         ['<cr>'] = {
-          action = function()
-            return require('obsidian').util.smart_action()
-          end,
+          action = function() return require('obsidian').util.smart_action() end,
           opts = { buffer = true, expr = true },
         },
       },
@@ -44,8 +40,6 @@ return {
     priority = 500,
     lazy = false,
     opts = {},
-    init = function()
-      vim.keymap.set('n', '<leader>tm', '<cmd>Markview toggle<CR>', { desc = '[M]arkdown Render' })
-    end,
+    init = function() vim.keymap.set('n', '<leader>tm', '<cmd>Markview toggle<CR>', { desc = '[M]arkdown Render' }) end,
   },
 }

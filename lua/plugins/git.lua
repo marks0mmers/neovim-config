@@ -36,9 +36,12 @@ return {
           end
         end, { desc = 'Jump to previous git [c]hange' })
 
-        map('v', '<leader>ghr', function()
-          gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = 'reset git hunk' })
+        map(
+          'v',
+          '<leader>ghr',
+          function() gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end,
+          { desc = 'reset git hunk' }
+        )
         map('n', '<leader>ghr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk' })
         map('n', '<leader>ghb', gitsigns.blame_line, { desc = 'git [b]lame line' })
         map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = 'git show [b]lame line' })

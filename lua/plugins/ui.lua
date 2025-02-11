@@ -9,16 +9,12 @@ return {
       keys = {
         {
           '>',
-          function()
-            require('quicker').expand { before = 2, after = 2, add_to_existing = true }
-          end,
+          function() require('quicker').expand { before = 2, after = 2, add_to_existing = true } end,
           desc = 'Expand quickfix content',
         },
         {
           '<',
-          function()
-            require('quicker').collapse()
-          end,
+          function() require('quicker').collapse() end,
           desc = 'Collapse quickfix content',
         },
       },
@@ -28,9 +24,7 @@ return {
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
-    opts = function()
-      vim.cmd.colorscheme 'tokyonight-night'
-    end,
+    opts = function() vim.cmd.colorscheme 'tokyonight-night' end,
   },
   {
     'folke/todo-comments.nvim',

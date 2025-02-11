@@ -27,9 +27,7 @@ return {
         lualine_x = { 'encoding', { 'filetype', icon = { align = 'right' } } },
         lualine_y = { 'progress', 'location' },
         lualine_z = {
-          function()
-            return vim.uv.os_gethostname():match '(.+)%..*'
-          end,
+          function() return vim.uv.os_gethostname():match '(.+)%..*' end,
         },
       },
     },

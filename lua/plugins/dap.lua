@@ -13,9 +13,7 @@ return {
     vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = '[B]reakpoint' })
     vim.keymap.set('n', '<leader>dc', dap.run_to_cursor, { desc = 'Run to [C]ursor' })
     ---@diagnostic disable-next-line: missing-fields
-    vim.keymap.set('n', '<leader>d?', function()
-      ui.eval(nil, { enter = true })
-    end, { desc = '[?] is under cursor' })
+    vim.keymap.set('n', '<leader>d?', function() ui.eval(nil, { enter = true }) end, { desc = '[?] is under cursor' })
 
     vim.keymap.set('n', '<F1>', dap.continue)
     vim.keymap.set('n', '<F2>', dap.step_into)
@@ -24,18 +22,10 @@ return {
     vim.keymap.set('n', '<F5>', dap.step_back)
     vim.keymap.set('n', '<F13>', dap.restart)
 
-    dap.listeners.before.attach.dapui_config = function()
-      ui.open()
-    end
-    dap.listeners.before.launch.dapui_config = function()
-      ui.open()
-    end
-    dap.listeners.before.event_terminated.dapui_config = function()
-      ui.close()
-    end
-    dap.listeners.before.event_exited.dapui_config = function()
-      ui.close()
-    end
+    dap.listeners.before.attach.dapui_config = function() ui.open() end
+    dap.listeners.before.launch.dapui_config = function() ui.open() end
+    dap.listeners.before.event_terminated.dapui_config = function() ui.close() end
+    dap.listeners.before.event_exited.dapui_config = function() ui.close() end
 
     dap.adapters['pwa-node'] = {
       type = 'server',

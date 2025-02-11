@@ -3,9 +3,7 @@ vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
 vim.opt.showmode = false
 
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
+vim.schedule(function() vim.opt.clipboard = 'unnamedplus' end)
 
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -56,9 +54,7 @@ vim.fn.sign_define('DiagnosticSignInfo', { text = signs.INFO, texthl = 'Diagnost
 
 vim.diagnostic.config {
   virtual_text = {
-    prefix = function(diagnostic)
-      return signs[vim.diagnostic.severity[diagnostic.severity]]
-    end,
+    prefix = function(diagnostic) return signs[vim.diagnostic.severity[diagnostic.severity]] end,
   },
 }
 
@@ -68,9 +64,7 @@ vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+  callback = function() vim.highlight.on_yank() end,
 })
 
 vim.api.nvim_create_autocmd('FileType', {

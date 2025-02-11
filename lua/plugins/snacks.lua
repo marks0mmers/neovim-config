@@ -7,7 +7,11 @@ return {
   opts = {
     indent = {},
     input = {},
-    picker = {},
+    picker = {
+      matcher = {
+        frequency = true,
+      },
+    },
     debug = {},
     notifier = {
       filter = function(noti) return noti.msg ~= 'No information available' end,
