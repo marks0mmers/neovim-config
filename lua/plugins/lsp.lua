@@ -63,9 +63,7 @@ return {
           'cssls',
         },
         handlers = {
-          function(server_name)
-            lspconfig[server_name].setup { capabilities = capabilities }
-          end,
+          function(server_name) lspconfig[server_name].setup { capabilities = capabilities } end,
           lua_ls = function()
             lspconfig.lua_ls.setup {
               capabilities = capabilities,
@@ -78,9 +76,7 @@ return {
               },
             }
           end,
-          jdtls = function()
-            lspconfig.jdtls.setup { capabilities = capabilities }
-          end,
+          jdtls = function() lspconfig.jdtls.setup { capabilities = capabilities } end,
         },
       }
     end,
@@ -91,27 +87,17 @@ return {
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
         callback = function(event)
-          local fzf = require 'fzf-lua'
-          local fzf_opts = { jump_to_single_result = true, ignore_current_line = true }
           local map = function(keys, desc, func)
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
-          map('gd', '[G]oto [D]efinition', function()
-            fzf.lsp_definitions(fzf_opts)
-          end)
-          map('gR', '[G]oto [R]eferences', function()
-            fzf.lsp_references(fzf_opts)
-          end)
-          map('gi', '[G]oto [I]mplementation', function()
-            fzf.lsp_implementations(fzf_opts)
-          end)
+          map('gd', '[G]oto [D]efinition', function() Snacks.picker.lsp_definitions() end)
+          map('gR', '[G]oto [R]eferences', function() Snacks.picker.lsp_references() end)
+          map('gi', '[G]oto [I]mplementation', function() Snacks.picker.lsp_implementations() end)
           map('gr', '[N]ative [R]eferences', vim.lsp.buf.references)
           map('gD', '[G]oto [D]eclaration', vim.lsp.buf.declaration)
-          map('<leader>lD', 'Type [D]efinition', function()
-            fzf.lsp_typedefs(fzf_opts)
-          end)
-          map('<leader>ls', 'Document [S]ymbols', fzf.lsp_document_symbols)
+          map('<leader>lD', 'Type [D]efinition', function() Snacks.picker.lsp_type_definitions() end)
+          map('<leader>ls', 'Document [S]ymbols', function() Snacks.picker.lsp_symbols() end)
           map('<leader>lr', '[R]ename Symbol', vim.lsp.buf.rename)
           map('<leader>la', 'Code [A]ctions', vim.lsp.buf.code_action)
           map('<Leader>ld', 'Hover diagnostics', vim.diagnostic.open_float)
@@ -119,9 +105,12 @@ return {
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            vim.keymap.set('n', '<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, { desc = 'Inlay [H]ints' })
+            vim.keymap.set(
+              'n',
+              '<leader>th',
+              function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }) end,
+              { desc = 'Inlay [H]ints' }
+            )
           end
         end,
       })

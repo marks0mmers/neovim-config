@@ -43,25 +43,6 @@ return {
     },
   },
   {
-    'folke/snacks.nvim',
-    priority = 1000,
-    ---@module "snacks"
-    ---@type snacks.Config
-    opts = {
-      indent = {},
-      input = {},
-      notifier = {
-        filter = function(noti)
-          if noti.msg == 'No information available' then
-            return false
-          end
-          return true
-        end,
-      },
-      statuscolumn = {},
-    },
-  },
-  {
     'folke/which-key.nvim',
     event = 'VeryLazy',
     ---@module "which-key"
