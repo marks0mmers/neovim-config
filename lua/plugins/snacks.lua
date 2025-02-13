@@ -1,20 +1,21 @@
 return {
   'folke/snacks.nvim',
   dependencies = { 'echasnovski/mini.icons' },
+  priority = 1000,
   lazy = false,
   ---@module "snacks"
   ---@type snacks.Config
   opts = {
+    debug = {},
     indent = {},
     input = {},
+    notifier = {
+      filter = function(noti) return noti.msg ~= 'No information available' end,
+    },
     picker = {
       matcher = {
         frequency = true,
       },
-    },
-    debug = {},
-    notifier = {
-      filter = function(noti) return noti.msg ~= 'No information available' end,
     },
     statuscolumn = {},
   },

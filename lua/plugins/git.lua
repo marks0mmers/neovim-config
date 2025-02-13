@@ -13,39 +13,38 @@ return {
       on_attach = function(bufnr)
         local gitsigns = require 'gitsigns'
 
-        local function map(mode, l, r, opts)
-          opts = opts or {}
-          opts.buffer = bufnr
-          vim.keymap.set(mode, l, r, opts)
-        end
-
         -- Navigation
-        map('n', ']c', function()
+        vim.keymap.set('n', ']c', function()
           if vim.wo.diff then
             vim.cmd.normal { ']c', bang = true }
           else
             gitsigns.nav_hunk 'next'
           end
-        end, { desc = 'Jump to next git [c]hange' })
+        end, { desc = 'Jump to next git [c]hange', buffer = bufnr })
 
-        map('n', '[c', function()
+        vim.keymap.set('n', '[c', function()
           if vim.wo.diff then
             vim.cmd.normal { '[c', bang = true }
           else
             gitsigns.nav_hunk 'prev'
           end
-        end, { desc = 'Jump to previous git [c]hange' })
+        end, { desc = 'Jump to previous git [c]hange', buffer = bufnr })
 
-        map(
+        vim.keymap.set(
           'v',
           '<leader>ghr',
           function() gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' } end,
-          { desc = 'reset git hunk' }
+          { desc = 'reset git hunk', buffer = bufnr }
         )
-        map('n', '<leader>ghr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk' })
-        map('n', '<leader>ghb', gitsigns.blame_line, { desc = 'git [b]lame line' })
-        map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = 'git show [b]lame line' })
-        map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = 'git show [D]eleted' })
+        vim.keymap.set('n', '<leader>ghr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk', buffer = bufnr })
+        vim.keymap.set('n', '<leader>ghb', gitsigns.blame_line, { desc = 'git [b]lame line', buffer = bufnr })
+        vim.keymap.set(
+          'n',
+          '<leader>tb',
+          gitsigns.toggle_current_line_blame,
+          { desc = 'git show [b]lame line', buffer = bufnr }
+        )
+        vim.keymap.set('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = 'git show [D]eleted', buffer = bufnr })
       end,
     },
   },
