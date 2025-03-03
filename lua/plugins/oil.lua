@@ -8,7 +8,7 @@ return {
         signcolumn = 'yes:2',
       },
     },
-    dependencies = { 'echasnovski/mini.icons' },
+    dependencies = { { 'echasnovski/mini.icons', opts = {} } },
   },
   {
     'refractalize/oil-git-status.nvim',
