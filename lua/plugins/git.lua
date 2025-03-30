@@ -64,6 +64,7 @@ return {
     event = 'VeryLazy',
     dir = '~/Developer/Work/m-sommers/nvim-radar',
     dev = true,
+    enabled = function() return vim.fn.isdirectory '~/Developer/Work/m-sommers/nvim-radar' == 1 end,
     opts = {
       dsid = 2702080918,
       board = 'Team - Production Development',
