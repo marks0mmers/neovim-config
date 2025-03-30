@@ -17,16 +17,7 @@ vim.lsp.enable(vim.tbl_keys(configs))
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
   callback = function(event)
-    local map = function(keys, desc, func)
-      vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
-    end
-
-    -- map('grd', '[G]oto [D]efinition', function() Snacks.picker.lsp_definitions() end)
-    -- map('grR', '[G]oto [R]eferences', function() Snacks.picker.lsp_references() end)
-    -- map('grD', '[G]oto [D]eclaration', vim.lsp.buf.declaration)
-    map('<leader>lD', 'Type [D]efinition', function() Snacks.picker.lsp_type_definitions() end)
-    map('<Leader>ld', 'Hover diagnostics', vim.diagnostic.open_float)
-    map('<leader>li', '[I]nfo', '<cmd>LspInfo<CR>')
+    vim.keymap.set('n', '<leader>td', vim.diagnostic.open_float, { desc = 'Toggle [D]iagnostics' })
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
