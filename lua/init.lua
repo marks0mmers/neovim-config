@@ -1,3 +1,4 @@
-require 'remap'
-require 'lazy_init'
-require 'set'
+require 'config.remap'
+require 'config.lazy'
+require 'config.set'
+require 'config.lsp'
