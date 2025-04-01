@@ -1,14 +1,4 @@
 return {
-  {
-    'nvim-java/nvim-java',
-    opts = {
-      root_markers = {
-        'mvnw',
-        'gradlew',
-        '.git',
-      },
-    },
-  },
   { 'j-hui/fidget.nvim', opts = {} },
   { 'Bilal2453/luvit-meta', lazy = true },
   {

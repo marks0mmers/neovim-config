@@ -51,14 +51,25 @@ local signs = {
   INFO = '',
 }
 
-vim.fn.sign_define('DiagnosticSignError', { text = signs.ERROR, texthl = 'DiagnosticSignError' })
-vim.fn.sign_define('DiagnosticSignWarn', { text = signs.WARN, texthl = 'DiagnosticSignWarn' })
-vim.fn.sign_define('DiagnosticSignHint', { text = signs.HINT, texthl = 'DiagnosticSignHint' })
-vim.fn.sign_define('DiagnosticSignInfo', { text = signs.INFO, texthl = 'DiagnosticSignInfo' })
-
 vim.diagnostic.config {
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = signs.ERROR,
+      [vim.diagnostic.severity.WARN] = signs.WARN,
+      [vim.diagnostic.severity.HINT] = signs.HINT,
+      [vim.diagnostic.severity.INFO] = signs.INFO,
+    },
+  },
   virtual_text = {
+    severity = {
+      max = vim.diagnostic.severity.WARN,
+    },
     prefix = function(diagnostic) return signs[vim.diagnostic.severity[diagnostic.severity]] end,
+  },
+  virtual_lines = {
+    severity = {
+      min = vim.diagnostic.severity.ERROR,
+    },
   },
 }
 
