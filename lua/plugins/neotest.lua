@@ -12,7 +12,7 @@ return {
     { 'lawrence-laz/neotest-zig', version = '1.3.*' },
   },
   keys = {
-    { '<leader>tt', '<cmd>Neotest run<CR>', desc = '[T]est' },
+    { '<leader>tt', function() vim.cmd.Neotest 'run' end, desc = '[T]est' },
   },
   opts = function()
     return {

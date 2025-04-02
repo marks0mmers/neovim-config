@@ -14,6 +14,8 @@ return {
   },
   {
     'neovim/nvim-lspconfig',
+    event = { 'BufReadPost', 'BufNewFile' },
+    cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
     config = function()
       local lspconfig = require 'lspconfig'
       local cmp = require 'blink.cmp'
@@ -27,6 +29,7 @@ return {
       lspconfig.pyright.setup(opts)
       lspconfig.rust_analyzer.setup(opts)
       lspconfig.ts_ls.setup(opts)
+      lspconfig.marksman.setup(opts)
 
       lspconfig.eslint.setup {
         capabailities = opts.capabilities,

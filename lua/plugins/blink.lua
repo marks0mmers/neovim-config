@@ -1,5 +1,6 @@
 return {
   'saghen/blink.cmp',
+  event = { 'BufReadPost', 'BufNewFile' },
   dependencies = {
     'rafamadriz/friendly-snippets',
     'onsails/lspkind.nvim',
@@ -13,7 +14,6 @@ return {
         },
       },
     },
-    { 'saghen/blink.compat', lazy = true, version = false },
   },
   version = '*',
   ---@module "blink.cmp"

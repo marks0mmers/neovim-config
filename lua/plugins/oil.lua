@@ -1,6 +1,10 @@
 return {
   {
     'stevearc/oil.nvim',
+    dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+    keys = {
+      { '<leader>e', vim.cmd.Oil, desc = '[E]xplorer' },
+    },
     ---@module 'oil'
     ---@type oil.SetupOpts
     opts = {
@@ -8,10 +12,10 @@ return {
         signcolumn = 'yes:2',
       },
     },
-    dependencies = { { 'echasnovski/mini.icons', opts = {} } },
   },
   {
     'refractalize/oil-git-status.nvim',
+    ft = 'oil',
     dependencies = { 'stevearc/oil.nvim' },
     opts = {},
   },

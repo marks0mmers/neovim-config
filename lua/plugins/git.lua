@@ -52,11 +52,11 @@ return {
     'tpope/vim-fugitive',
     lazy = false,
     keys = {
-      { '<leader>gs', '<cmd>G<CR>', desc = '[S]tatus' },
-      { '<leader>gp', '<cmd>G pull<CR>', desc = '[P]ull' },
-      { '<leader>gds', '<cmd>Gvdiffsplit!<CR>', desc = '[D]iff [S]plit' },
-      { '<leader>gdl', '<cmd>diffget //2<CR>', desc = '[D]iff [L]eft' },
-      { '<leader>gdr', '<cmd>diffget //2<CR>', desc = '[D]iff [R]ight' },
+      { '<leader>gs', vim.cmd.G, desc = '[S]tatus' },
+      { '<leader>gp', function() vim.cmd.G 'pull' end, desc = '[P]ull' },
+      { '<leader>gds', function() vim.cmd.Gvdiffsplit { bang = true } end, desc = '[D]iff [S]plit' },
+      { '<leader>gdl', function() vim.cmd.diffget '//2' end, desc = '[D]iff [L]eft' },
+      { '<leader>gdr', function() vim.cmd.diffget '//3' end, desc = '[D]iff [R]ight' },
     },
   },
   {

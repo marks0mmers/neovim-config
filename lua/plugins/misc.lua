@@ -34,7 +34,7 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     opts = { use_default_keymaps = false },
     keys = {
-      { '<leader>st', '<cmd>TSJToggle<CR>', desc = '[T]oggle' },
+      { '<leader>st', vim.cmd.TSJToggle, desc = '[T]oggle' },
     },
   },
   {

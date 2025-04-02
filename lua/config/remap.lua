@@ -1,13 +1,12 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<Esc>', vim.cmd.nohlsearch)
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-vim.keymap.set('n', '<leader>e', function() require('oil').open() end, { desc = '[E]xplorer' })
-vim.keymap.set('v', 'J', "<cmd>m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', "<cmd>m '<-2<CR>gv=gv")
+vim.keymap.set('v', 'J', function() vim.cmd.m "'>+1<CR>gv=gv" end)
+vim.keymap.set('v', 'K', function() vim.cmd.m "'<-2<CR>gv=gv" end)
 
-vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>')
+vim.keymap.set('n', '<C-f>', function() vim.cmd.silent { args = { '!tmux', 'neww', 'tmux-sessionizer' } } end)
 vim.keymap.set(
   'n',
   '<leader>tn',
