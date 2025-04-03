@@ -20,11 +20,11 @@ return {
       javascriptreact = { 'prettier' },
       typescript = { 'prettier' },
       typescriptreact = { 'prettier' },
+      markdown = { 'markdown-toc', 'prettier' },
       json = { 'prettier' },
       scss = { 'prettier' },
       go = { 'gofumpt', 'goimports', 'golines' },
       rust = { 'rustfmt' },
-      ocaml = { 'ocamlformat' },
     },
   },
 }

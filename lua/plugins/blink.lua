@@ -4,16 +4,7 @@ return {
   dependencies = {
     'rafamadriz/friendly-snippets',
     'onsails/lspkind.nvim',
-    {
-      'xzbdmw/colorful-menu.nvim',
-      opts = {
-        ls = {
-          vtsls = {
-            extra_info_hl = '@comment',
-          },
-        },
-      },
-    },
+    'xzbdmw/colorful-menu.nvim',
   },
   version = '*',
   ---@module "blink.cmp"
@@ -21,7 +12,6 @@ return {
   opts = {
     keymap = { preset = 'default' },
     appearance = {
-      use_nvim_cmp_as_default = true,
       nerd_font_variant = 'mono',
     },
     completion = {
@@ -30,11 +20,7 @@ return {
           enabled = true,
         },
       },
-      documentation = {
-        window = { border = 'rounded' },
-      },
       menu = {
-        border = 'rounded',
         draw = {
           columns = { { 'label', 'kind_icon', 'label_description', gap = 1 }, { 'kind' } },
           components = {
@@ -55,11 +41,11 @@ return {
     },
     signature = {
       enabled = true,
-      window = { border = 'rounded' },
     },
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer', 'cmdline' },
     },
+    fuzzy = { implementation = 'prefer_rust_with_warning' },
   },
-  opts_extend = { 'sources.default', 'sources.completion.enabled_providers' },
+  opts_extend = { 'sources.default' },
 }

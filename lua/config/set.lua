@@ -31,6 +31,7 @@ vim.opt.expandtab = true
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldlevel = 999
+vim.opt.winborder = 'rounded'
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
