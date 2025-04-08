@@ -1,71 +1,69 @@
 return {
-  { 'j-hui/fidget.nvim', opts = {} },
-  { 'Bilal2453/luvit-meta', lazy = true },
-  {
-    'folke/lazydev.nvim',
-    ft = 'lua',
-    --- @module 'lazydev'
-    --- @type lazydev.Config
-    opts = {
-      library = {
-        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+  'neovim/nvim-lspconfig',
+  event = { 'BufReadPost', 'BufNewFile' },
+  cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
+  dependencies = {
+    { 'j-hui/fidget.nvim', opts = {} },
+    { 'mfussenegger/nvim-jdtls' },
+    {
+      'folke/lazydev.nvim',
+      ft = 'lua',
+      opts = {
+        library = {
+          { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+        },
       },
     },
   },
-  {
-    'mfussenegger/nvim-jdtls',
-  },
-  {
-    'neovim/nvim-lspconfig',
-    event = { 'BufReadPost', 'BufNewFile' },
-    cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
-    config = function()
-      local lspconfig = require 'lspconfig'
-      local cmp = require 'blink.cmp'
+  config = function()
+    local lspconfig = require 'lspconfig'
 
-      local opts = { capabailities = cmp.get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities()) }
+    local capabilities = require('blink.cmp').get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-      lspconfig.cssls.setup(opts)
-      lspconfig.gopls.setup(opts)
-      lspconfig.html.setup(opts)
-      lspconfig.jsonls.setup(opts)
-      lspconfig.pyright.setup(opts)
-      lspconfig.rust_analyzer.setup(opts)
-      lspconfig.ts_ls.setup(opts)
-      lspconfig.marksman.setup(opts)
+    local servers = { 'cssls', 'gopls', 'html', 'jsonls', 'pyright', 'rust_analyzer', 'ts_ls', 'marksman' }
 
-      lspconfig.eslint.setup {
-        capabailities = opts.capabilities,
-        on_attach = function(_, bufnr)
-          vim.api.nvim_create_autocmd('BufWritePre', {
-            buffer = bufnr,
-            command = 'EslintFixAll',
-          })
-        end,
-      }
+    for _, server in ipairs(servers) do
+      lspconfig[server].setup { capabilities = capabilities }
+    end
 
-      lspconfig.lua_ls.setup {
-        capabailities = opts.capabilities,
-        settings = {
-          Lua = {
-            completion = {
-              callSnippet = 'Replace',
+    lspconfig.eslint.setup {
+      capabailities = capabilities,
+      on_attach = function(_, bufnr)
+        vim.api.nvim_create_autocmd('BufWritePre', {
+          buffer = bufnr,
+          command = 'EslintFixAll',
+        })
+      end,
+    }
+
+    lspconfig.lua_ls.setup {
+      capabailities = capabilities,
+      settings = {
+        Lua = {
+          completion = {
+            callSnippet = 'Replace',
+          },
+          workspace = {
+            checkThirdParty = false,
+            telemetry = { enable = false },
+            library = {
+              '${3rd}/love2d/library',
             },
           },
         },
-      }
+      },
+    }
 
-      lspconfig.zls.setup {
-        capabailities = opts.capabilities,
-        root_dir = lspconfig.util.root_pattern('.git', 'build.zig', 'zls.json'),
-        settings = {
-          zls = {
-            enable_inlay_hints = true,
-            enable_snippets = true,
-            warn_style = true,
-          },
+    lspconfig.zls.setup {
+      capabailities = capabilities,
+      root_dir = lspconfig.util.root_pattern('.git', 'build.zig', 'zls.json'),
+      settings = {
+        zls = {
+          enable_inlay_hints = true,
+          enable_snippets = true,
+          warn_style = true,
         },
-      }
-    end,
-  },
+      },
+    }
+  end,
 }
