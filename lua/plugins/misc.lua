@@ -16,7 +16,6 @@ return {
     opts = {},
   },
   { 'echasnovski/mini.ai', opts = { n_lines = 500 } },
-  { 'echasnovski/mini.comment', opts = {} },
   {
     'vuki656/package-info.nvim',
     dependencies = { 'MunifTanjim/nui.nvim' },

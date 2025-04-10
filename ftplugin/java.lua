@@ -20,9 +20,7 @@ require('jdtls').start_or_attach {
         toString = {
           template = '${object.className}{${member.name()}=${member.value}, ${otherMembers}}',
         },
-        hashCodeEquals = {
-          useJava7Objects = true,
-        },
+        hashCodeEquals = { useJava7Objects = true },
         useBlocks = true,
       },
       contentProvider = { preferred = 'fernflower' },
