@@ -1,23 +1,52 @@
--- TODO: One Day when https://github.com/neovim/nvim-lspconfig/issues/3494 is fixed
---
--- local cmp = require 'blink.cmp'
--- local capabilities = cmp.get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
---
--- vim.lsp.config('*', {
---   capabilities = capabilities,
--- })
---
--- local configs = {}
---
--- for _, v in ipairs(vim.api.nvim_get_runtime_file('lsp/*', true)) do
---   local name = vim.fn.fnamemodify(v, ':t:r')
---   configs[name] = true
--- end
---
--- vim.lsp.enable(vim.tbl_keys(configs))
+local lspconfig = require 'lspconfig'
+local capabilities = require('blink.cmp').get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+vim.lsp.config('*', {
+  capabilities = capabilities,
+})
+
+vim.lsp.config.lua_ls = {
+  settings = {
+    Lua = {
+      completion = {
+        callSnippet = 'Replace',
+      },
+      workspace = {
+        checkThirdParty = false,
+        telemetry = { enable = false },
+        library = {
+          '${3rd}/love2d/library',
+        },
+      },
+    },
+  },
+}
+
+vim.lsp.enable { 'cssls', 'gopls', 'html', 'jsonls', 'lua_ls', 'pyright', 'rust_analyzer', 'ts_ls', 'marksman' }
+
+lspconfig.eslint.setup {
+  capabailities = capabilities,
+  on_attach = function(_, bufnr)
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      buffer = bufnr,
+      command = 'EslintFixAll',
+    })
+  end,
+}
 
 vim.g.zig_fmt_parse_errors = 0
 vim.g.zig_fmt_autosave = 0
+lspconfig.zls.setup {
+  capabailities = capabilities,
+  root_dir = lspconfig.util.root_pattern('.git', 'build.zig', 'zls.json'),
+  settings = {
+    zls = {
+      enable_inlay_hints = true,
+      enable_snippets = true,
+      warn_style = true,
+    },
+  },
+}
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
@@ -27,12 +56,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-      vim.keymap.set(
-        'n',
-        '<leader>th',
-        function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }) end,
-        { desc = 'Inlay [H]ints' }
-      )
+      local toggle = function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }) end
+      vim.keymap.set('n', '<leader>th', toggle, { desc = 'Inlay [H]ints' })
     end
   end,
 })

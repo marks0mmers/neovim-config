@@ -16,32 +16,28 @@ return {
     },
     completion = {
       accept = {
-        auto_brackets = {
-          enabled = true,
-        },
+        auto_brackets = { enabled = true },
       },
       menu = {
         draw = {
-          columns = { { 'label', 'kind_icon', 'label_description', gap = 1 }, { 'kind' } },
+          columns = {
+            { 'label', 'kind_icon', 'label_description', gap = 1 },
+            { 'kind' },
+          },
           components = {
             label = {
               text = function(ctx) return require('colorful-menu').blink_components_text(ctx) end,
               highlight = function(ctx) return require('colorful-menu').blink_components_highlight(ctx) end,
             },
             kind_icon = {
-              text = function(item)
-                local kind = require('lspkind').symbol_map[item.kind] or ''
-                return kind
-              end,
+              text = function(item) return require('lspkind').symbol_map[item.kind] or '' end,
               highlight = 'CmpItemKind',
             },
           },
         },
       },
     },
-    signature = {
-      enabled = true,
-    },
+    signature = { enabled = true },
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer', 'cmdline' },
     },
