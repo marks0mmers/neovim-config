@@ -1,6 +1,6 @@
 # marks0mmers.nvim
 
-My current neovim setup. Inspired from [kickstart.nvim]('https://github.com/nvim-lua/kickstart.nvim').
+My current neovim config - changes quite often lol
 
 ## Installation
 
