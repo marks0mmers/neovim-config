@@ -6,21 +6,8 @@ return {
     opts = {},
   },
   {
-    'olexsmir/gopher.nvim',
-    ft = 'go',
-    build = function() vim.cmd.GoInstallDeps() end,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-treesitter/nvim-treesitter',
-    },
-    opts = {},
-  },
-  { 'echasnovski/mini.ai', opts = { n_lines = 500 } },
-  {
-    'vuki656/package-info.nvim',
-    dependencies = { 'MunifTanjim/nui.nvim' },
-    ft = 'json',
-    opts = {},
+    'echasnovski/mini.ai',
+    opts = { n_lines = 500 },
   },
   {
     'Wansmer/treesj',

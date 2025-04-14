@@ -1,11 +1,7 @@
 return {
   'saghen/blink.cmp',
   event = { 'BufReadPost', 'BufNewFile' },
-  dependencies = {
-    'rafamadriz/friendly-snippets',
-    'onsails/lspkind.nvim',
-    'xzbdmw/colorful-menu.nvim',
-  },
+  dependencies = { 'rafamadriz/friendly-snippets' },
   version = '*',
   ---@module "blink.cmp"
   ---@type blink.cmp.Config
@@ -15,27 +11,28 @@ return {
       nerd_font_variant = 'mono',
     },
     completion = {
-      accept = {
-        auto_brackets = { enabled = true },
-      },
-      ghost_text = { enabled = true },
       menu = {
         draw = {
           columns = {
-            { 'label', 'kind_icon', 'label_description', gap = 1 },
+            { 'kind_icon', 'label', 'label_description', gap = 1 },
             { 'kind' },
           },
           components = {
-            label = {
+            kind = {
+              highlight = function(ctx)
+                local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                return hl
+              end,
+            },
+            kind_icon = {
               text = function(ctx)
                 local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
                 return kind_icon
               end,
-              highlight = function(ctx) return require('colorful-menu').blink_components_highlight(ctx) end,
-            },
-            kind_icon = {
-              text = function(item) return require('lspkind').symbol_map[item.kind] or '' end,
-              highlight = 'CmpItemKind',
+              highlight = function(ctx)
+                local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                return hl
+              end,
             },
           },
         },

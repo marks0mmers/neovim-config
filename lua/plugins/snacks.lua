@@ -31,7 +31,6 @@ return {
     { '<leader><leader>', function() Snacks.picker.buffers() end, desc = '[ ] Find existing buffers' },
     {
       '<leader>fn',
-      ---@diagnostic disable-next-line: assign-type-mismatch
       function() Snacks.picker.files { cwd = vim.fn.stdpath 'config' } end,
       desc = '[F]ind [N]eovim files',
     },
