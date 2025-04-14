@@ -18,6 +18,7 @@ return {
       accept = {
         auto_brackets = { enabled = true },
       },
+      ghost_text = { enabled = true },
       menu = {
         draw = {
           columns = {
@@ -26,7 +27,10 @@ return {
           },
           components = {
             label = {
-              text = function(ctx) return require('colorful-menu').blink_components_text(ctx) end,
+              text = function(ctx)
+                local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+                return kind_icon
+              end,
               highlight = function(ctx) return require('colorful-menu').blink_components_highlight(ctx) end,
             },
             kind_icon = {

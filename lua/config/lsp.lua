@@ -1,9 +1,4 @@
 local lspconfig = require 'lspconfig'
-local capabilities = require('blink.cmp').get_lsp_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-vim.lsp.config('*', {
-  capabilities = capabilities,
-})
 
 vim.lsp.config.lua_ls = {
   settings = {
@@ -25,7 +20,7 @@ vim.lsp.config.lua_ls = {
 vim.lsp.enable { 'cssls', 'gopls', 'html', 'jsonls', 'lua_ls', 'pyright', 'rust_analyzer', 'ts_ls', 'marksman' }
 
 lspconfig.eslint.setup {
-  capabailities = capabilities,
+  capabailities = require('blink.cmp').get_lsp_capabilities(),
   on_attach = function(_, bufnr)
     vim.api.nvim_create_autocmd('BufWritePre', {
       buffer = bufnr,
@@ -37,8 +32,7 @@ lspconfig.eslint.setup {
 vim.g.zig_fmt_parse_errors = 0
 vim.g.zig_fmt_autosave = 0
 lspconfig.zls.setup {
-  capabailities = capabilities,
-  root_dir = lspconfig.util.root_pattern('.git', 'build.zig', 'zls.json'),
+  capabailities = require('blink.cmp').get_lsp_capabilities(),
   settings = {
     zls = {
       enable_inlay_hints = true,
