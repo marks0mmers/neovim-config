@@ -8,7 +8,7 @@ vim.keymap.set('v', 'K', function() vim.cmd.m "'<-2<CR>gv=gv" end)
 
 vim.keymap.set('n', '<C-f>', function() vim.cmd.silent { args = { '!tmux', 'neww', 'tmux-sessionizer' } } end)
 vim.keymap.set('n', '<leader>tn', function() Snacks.notifier.show_history() end, { desc = '[N]otification History' })
-vim.keymap.set('n', '<leader>e', function() MiniFiles.open() end, { desc = '[E]xplorer' })
+vim.keymap.set('n', '<leader>e', function() MiniFiles.open(vim.api.nvim_buf_get_name(0)) end, { desc = '[E]xplorer' })
 
 vim.keymap.set('n', '<C-j>', require('utils.marks').next_mark, { desc = 'Next mark' })
 vim.keymap.set('n', '<C-k>', require('utils.marks').prev_mark, { desc = 'Prev mark' })

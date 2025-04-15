@@ -17,6 +17,7 @@ return {
         frequency = true,
       },
     },
+    rename = {},
     statuscolumn = {},
   },
   keys = {

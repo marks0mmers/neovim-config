@@ -1,6 +1,6 @@
 return {
   'echasnovski/mini.nvim',
-  config = function()
+  init = function()
     require('mini.ai').setup { n_lines = 500 }
 
     local miniclue = require 'mini.clue'
@@ -45,11 +45,11 @@ return {
 
     require('mini.comment').setup {}
 
-    require('mini.files').setup {
-      mappings = {
-        go_in_plus = '<CR>',
-      },
-    }
+    require('mini.files').setup {}
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'MiniFilesActionRename',
+      callback = function(event) Snacks.rename.on_rename_file(event.data.from, event.data.to) end,
+    })
 
     require('mini.surround').setup {}
   end,
