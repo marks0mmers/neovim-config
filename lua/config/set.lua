@@ -34,7 +34,6 @@ vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.opt.foldlevel = 999
 vim.opt.winborder = 'rounded'
-vim.cmd.colorscheme 'tokyonight-night'
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
@@ -84,9 +83,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
   callback = function() vim.hl.on_yank() end,
-})
-
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'qf' },
-  command = [[nnoremap <buffer> <CR> <CR>:cclose<CR>]],
 })

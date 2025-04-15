@@ -24,7 +24,7 @@ return {
     'folke/tokyonight.nvim',
     lazy = false,
     priority = 1000,
-    opts = {},
+    opts = function() vim.cmd.colorscheme 'tokyonight-night' end,
   },
   {
     'folke/todo-comments.nvim',
@@ -34,28 +34,6 @@ return {
     ---@type TodoOptions
     opts = {
       signs = false,
-    },
-  },
-  {
-    'folke/which-key.nvim',
-    event = 'VeryLazy',
-    ---@module "which-key"
-    ---@type wk.Opts
-    opts = {
-      preset = 'modern',
-      spec = {
-        { '<leader>l', group = '[L]SP' },
-        { '<leader>r', group = '[R]ename' },
-        { '<leader>f', group = '[F]ind' },
-        { '<leader>n', group = '[N]otes' },
-        { '<leader>m', group = '[M]arks' },
-        { '<leader>d', group = '[D]ebug' },
-        { '<leader>t', group = '[T]oggle/[T]est' },
-        { '<leader>g', group = '[G]it' },
-        { '<leader>s', group = '[S]plit' },
-        { '<leader>gh', group = 'Git [H]unk', mode = { 'n', 'v' } },
-        { '<leader>gd', group = 'Git [D]iff' },
-      },
     },
   },
 }

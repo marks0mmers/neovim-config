@@ -24,6 +24,7 @@ return {
     ---@module "conform"
     ---@type conform.setupOpts
     opts = {
+      format_on_save = {},
       formatters_by_ft = {
         lua = { 'stylua' },
         html = { 'prettier' },

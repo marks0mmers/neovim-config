@@ -6,10 +6,6 @@ return {
     opts = {},
   },
   {
-    'echasnovski/mini.ai',
-    opts = { n_lines = 500 },
-  },
-  {
     'Wansmer/treesj',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     opts = { use_default_keymaps = false },
